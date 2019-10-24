@@ -1,16 +1,21 @@
 import React from 'react'
-import marked from 'marked'
-import sanitize from 'sanitize-html'
+import Link from 'next/link'
 
-const Index = ({ md }) => {
-  const markdown = md.default || md;
-  return <div dangerouslySetInnerHTML={{ __html: sanitize(marked(markdown)) }} />
-};
-
-Index.getInitialProps = async context => {
-  const md = await import(`../markdown/${context.query.md}.md`)
-    .catch(() => '# エラーだお')
-  return { md }
+const Index = () => {
+  return (
+    <ul>
+      <li>
+        <Link href="/docs/[md]" as="/docs/foo">
+          <a>foo</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/docs/[md]" as="/docs/bar">
+          <a>bar</a>
+        </Link>
+      </li>
+    </ul>
+  );
 };
 
 export default Index
