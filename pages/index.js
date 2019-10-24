@@ -5,12 +5,12 @@ const Index = () => {
   return (
     <ul>
       <li>
-        <Link href="/docs/[md]" as="/docs/foo">
+        <Link href='/docs/[md]' as='/docs/foo'>
           <a>foo</a>
         </Link>
       </li>
       <li>
-        <Link href="/docs/[md]" as="/docs/bar">
+        <Link href='/docs/[md]' as='/docs/bar'>
           <a>bar</a>
         </Link>
       </li>
