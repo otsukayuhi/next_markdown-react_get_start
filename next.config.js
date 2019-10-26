@@ -1,3 +1,4 @@
+const withCSS = require("@zeit/next-css");
 const fs = require("fs");
 const blogPostsFolder = "./markdown";
 
@@ -14,11 +15,11 @@ const getPathsForMarkdown = () =>
     });
   }, {});
 
-module.exports = {
+module.exports = withCSS({
   webpack: config => {
     config.module.rules.push({
       test: /\.md$/,
-      use: "frontmatter-markdown-loader"
+      use: "raw-loader"
     });
     return config;
   },
@@ -28,4 +29,4 @@ module.exports = {
       ...getPathsForMarkdown()
     };
   }
-};
+});
