@@ -1,2 +1,2 @@
-import data from 'markdown/data.json'
+import data from '../../post.json'
 export const { post } = data

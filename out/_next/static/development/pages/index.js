@@ -12365,6 +12365,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./post.json":
+/*!*******************!*\
+  !*** ./post.json ***!
+  \*******************/
+/*! exports provided: post, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"post\":[{\"id\":\"get-start\",\"title\":\"事前準備\"},{\"id\":\"es2015\",\"title\":\"ES2015+の基礎知識\"},{\"id\":\"react-next\",\"title\":\"React/Next.jsとは？\"},{\"id\":\"emotion\",\"title\":\"EmotionでCSS in JS\"},{\"id\":\"next-export\",\"title\":\"Next.jsの静的書き出し\"}]}");
+
+/***/ }),
+
 /***/ "./src/components/App.js":
 /*!*******************************!*\
   !*** ./src/components/App.js ***!
@@ -12525,22 +12536,11 @@ var ItemStyle = _emotion_styled__WEBPACK_IMPORTED_MODULE_1__["default"].li(_temp
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "post", function() { return post; });
-/* harmony import */ var _markdown_data_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../markdown/data.json */ "./src/markdown/data.json");
-var _markdown_data_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../markdown/data.json */ "./src/markdown/data.json", 1);
+/* harmony import */ var _post_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../post.json */ "./post.json");
+var _post_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../post.json */ "./post.json", 1);
 
-var post = _markdown_data_json__WEBPACK_IMPORTED_MODULE_0__.post;
+var post = _post_json__WEBPACK_IMPORTED_MODULE_0__.post;
 
-
-/***/ }),
-
-/***/ "./src/markdown/data.json":
-/*!********************************!*\
-  !*** ./src/markdown/data.json ***!
-  \********************************/
-/*! exports provided: post, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"post\":[{\"id\":\"get-start\",\"title\":\"事前準備\"},{\"id\":\"es2015\",\"title\":\"ES2015+の基礎知識\"},{\"id\":\"react-next\",\"title\":\"React/Next.jsとは？\"},{\"id\":\"emotion\",\"title\":\"EmotionでCSS in JS\"},{\"id\":\"next-export\",\"title\":\"Next.jsの静的書き出し\"}]}");
 
 /***/ }),
 
