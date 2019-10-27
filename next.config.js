@@ -1,8 +1,15 @@
 const fs = require('fs')
-const blogPostsFolder = 'src/markdown'
+const markdownFolder = 'src/markdown'
 
 const getPathsForMarkdown = () =>
-  fs.readdirSync(blogPostsFolder).reduce((acc, fileName) => {
+  /**
+   * acc: accumulator（アキュムレーター）
+   * https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+   *
+   * markdownファイルの数だけ、exportPathMap用のオブジェクトを作成しいている
+   * reduce() 難しい＼(^o^)／
+   */
+  fs.readdirSync(markdownFolder).reduce((acc, fileName) => {
     const trimmedName = fileName.substring(0, fileName.length - 3)
     return Object.assign(acc, {
       [`/docs/${trimmedName}`]: {
