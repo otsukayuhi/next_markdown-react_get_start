@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "next/link";
-import App from "../components/App";
+import React from 'react'
+import Link from 'next/link'
+import App from 'components/App'
 
 const Index = () => {
   return (
@@ -23,7 +23,7 @@ const Index = () => {
         </li>
       </ul>
     </App>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

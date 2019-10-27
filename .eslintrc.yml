@@ -1,0 +1,17 @@
+plugins:
+  - react
+  - react-hooks
+extends:
+  - standard
+  - standard-react
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:prettier/recommended
+rules:
+  react/prop-types: 0
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
+  prettier/prettier: # - error以下はお好みで
+  - error
+  - semi: false
+    singleQuote: true

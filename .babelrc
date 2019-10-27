@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "pages": "./src/pages",
+          "components": "./src/components",
+          "const": "./src/const"
+        }
+      }
+    ]
+  ]
+}
