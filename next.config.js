@@ -6,9 +6,9 @@ const getPathsForMarkdown = () =>
     const trimmedName = fileName.substring(0, fileName.length - 3)
     return Object.assign(acc, {
       [`/docs/${trimmedName}`]: {
-        page: '/docs/[md]',
+        page: '/docs/[id]',
         query: {
-          md: trimmedName
+          id: trimmedName
         }
       }
     })

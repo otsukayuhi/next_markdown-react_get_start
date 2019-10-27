@@ -2,6 +2,7 @@ import React from 'react'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import App from 'components/App'
+import Nav from 'components/Nav'
 import { BaseContentStyle } from 'components/layout/commonStyle'
 import { WrapStyle, SectionStyle } from 'components/pages/docsStyle'
 
@@ -12,12 +13,13 @@ marked.setOptions({
   }
 })
 
-const Docs = ({ markdown }) => {
+const Docs = ({ markdown, id }) => {
   if (!markdown) return <div>not found</div>
   const html = marked(markdown.default)
 
   return (
     <App>
+      <Nav currentId={id} />
       <WrapStyle>
         <BaseContentStyle>
           <SectionStyle
@@ -31,9 +33,9 @@ const Docs = ({ markdown }) => {
 }
 
 Docs.getInitialProps = async ({ query }) => {
-  const { md } = query
-  const markdown = await import(`../../markdown/${md}.md`).catch(() => null)
-  return { markdown }
+  const { id } = query
+  const markdown = await import(`../../markdown/${id}.md`).catch(() => null)
+  return { markdown, id }
 }
 
 export default Docs

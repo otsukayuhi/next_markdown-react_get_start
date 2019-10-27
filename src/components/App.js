@@ -1,16 +1,25 @@
 import React from 'react'
 import { Global, css } from '@emotion/core'
-import resetCss from 'modern-css-reset'
+import resetCss from 'ress'
+
+const globalStyle = css`
+  ${resetCss}
+  ul,
+  li {
+    list-style: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+`
 
 const App = ({ children }) => (
-  <main>
-    <Global
-      styles={css`
-        ${resetCss}
-      `}
-    />
+  <>
+    <Global styles={globalStyle} />
     {children}
-  </main>
+  </>
 )
 
 export default App

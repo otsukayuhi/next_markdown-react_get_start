@@ -12,7 +12,9 @@
         "alias": {
           "pages": "./src/pages",
           "components": "./src/components",
-          "const": "./src/const"
+          "const": "./src/const",
+          "markdown": "./src/markdown",
+          "gateway": "./src/gateway"
         }
       }
     ]
