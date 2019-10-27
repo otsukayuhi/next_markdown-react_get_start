@@ -45,9 +45,11 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "npm run lint",
-      "git add"
-    ]
+    "linters": {
+      "*.js": [
+        "npm run lint",
+        "git add"
+      ]
+    }
   }
 }
