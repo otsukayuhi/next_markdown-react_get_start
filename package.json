@@ -37,6 +37,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "export": "npm run build && next export",
     "lint": "eslint --fix src/**/*.js"
   },
   "author": "",
@@ -47,7 +48,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "src/**/*.js": [
       "npm run lint",
       "git add"
     ]
