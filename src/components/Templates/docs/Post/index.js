@@ -4,22 +4,18 @@ import Nav from 'components/organism/Nav'
 import { BaseContentStyle } from 'components/layout/commonStyle'
 import { WrapStyle, SectionStyle } from './style'
 
-const Docs = ({ content, id }) => {
-  if (!content) return <div>not found</div>
-
-  return (
-    <BaseLayout>
-      <Nav currentId={id} />
-      <WrapStyle>
-        <BaseContentStyle>
-          <SectionStyle
-            className="markdown-body"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
-        </BaseContentStyle>
-      </WrapStyle>
-    </BaseLayout>
-  )
-}
+const Docs = ({ content, id }) => (
+  <BaseLayout>
+    <Nav currentId={id} />
+    <WrapStyle>
+      <BaseContentStyle>
+        <SectionStyle
+          className="markdown-body"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </BaseContentStyle>
+    </WrapStyle>
+  </BaseLayout>
+)
 
 export default Docs

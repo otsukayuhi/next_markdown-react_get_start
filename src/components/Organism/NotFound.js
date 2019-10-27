@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const NotFount = () => (
+const NotFound = () => (
   <div>
     <p>Not fount.</p>
     <Link href="/">
@@ -10,4 +10,4 @@ const NotFount = () => (
   </div>
 )
 
-export default NotFount
+export default NotFound
