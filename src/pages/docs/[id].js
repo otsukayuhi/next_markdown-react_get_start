@@ -1,41 +1,15 @@
 import React from 'react'
-import marked from 'marked'
-import hljs from 'highlight.js'
-import App from 'components/App'
-import Nav from 'components/Nav'
-import { BaseContentStyle } from 'components/layout/commonStyle'
-import { WrapStyle, SectionStyle } from 'components/pages/docsStyle'
+import Post from 'components/Templates/docs/Post'
+import NotFount from 'components/Organism/NotFound'
+import { getContent } from 'presenter/getContent'
 
-marked.setOptions({
-  langPrefix: '',
-  highlight: (code, lang) => {
-    return hljs.highlightAuto(code, [lang]).value
-  }
-})
+const Page = ({ content, id }) =>
+  content ? <Post {...{ content, id }} /> : <NotFount />
 
-const Docs = ({ markdown, id }) => {
-  if (!markdown) return <div>not found</div>
-  const html = marked(markdown.default)
-
-  return (
-    <App>
-      <Nav currentId={id} />
-      <WrapStyle>
-        <BaseContentStyle>
-          <SectionStyle
-            className="markdown-body"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </BaseContentStyle>
-      </WrapStyle>
-    </App>
-  )
-}
-
-Docs.getInitialProps = async ({ query }) => {
+Page.getInitialProps = async ({ query }) => {
   const { id } = query
-  const markdown = await import(`../../markdown/${id}.md`).catch(() => null)
-  return { markdown, id }
+  const content = await getContent(id)
+  return { content, id }
 }
 
-export default Docs
+export default Page

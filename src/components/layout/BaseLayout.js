@@ -15,11 +15,11 @@ const globalStyle = css`
   }
 `
 
-const App = ({ children }) => (
+const BaseLayout = ({ children }) => (
   <>
     <Global styles={globalStyle} />
     {children}
   </>
 )
 
-export default App
+export default BaseLayout

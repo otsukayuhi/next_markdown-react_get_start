@@ -1,21 +1,11 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
+    ["emotion"],
     [
       "module-resolver",
       {
-        "root": [
-          "./src"
-        ],
-        "alias": {
-          "pages": "./src/pages",
-          "components": "./src/components",
-          "const": "./src/const",
-          "markdown": "./src/markdown",
-          "gateway": "./src/gateway"
-        }
+        "root": ["./src"]
       }
     ]
   ]
