@@ -24,9 +24,15 @@ module.exports = withCSS({
     return config;
   },
   async exportPathMap(defaultPathMap) {
+    const pages = {
+      '/': { page: '/' },
+      '/about': { page: '/about' },
+      ...getPathsForMarkdown()
+    };
+    console.log(pages);
     return {
       ...defaultPathMap,
-      ...getPathsForMarkdown()
+      ...pages
     };
   }
 });

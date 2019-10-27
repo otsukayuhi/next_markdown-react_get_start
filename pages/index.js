@@ -16,6 +16,11 @@ const Index = () => {
             <a>bar</a>
           </Link>
         </li>
+        <li>
+          <Link href="/about">
+            <a>about</a>
+          </Link>
+        </li>
       </ul>
     </App>
   );
