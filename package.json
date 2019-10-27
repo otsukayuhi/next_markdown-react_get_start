@@ -47,11 +47,9 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "*.js": [
-        "npm run lint",
-        "git add"
-      ]
-    }
+    "*.js": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }
