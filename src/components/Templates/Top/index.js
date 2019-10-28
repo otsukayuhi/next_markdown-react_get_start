@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import BaseLayout from 'components/layouts/BaseLayout'
+import BaseLayout from 'components/Layouts/BaseLayout'
 import { post } from 'gateways/posts'
 import {
   WrapperStyle,
