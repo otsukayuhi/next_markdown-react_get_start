@@ -17,7 +17,9 @@ const convertIntoHtml = markdown => (markdown ? marked(markdown.default) : null)
 // Markdownファイルを取得
 // 取得できなれば、nullを返す
 export const getContent = async id => {
-  const markdown = await import(`../markdown/${id}.md`).catch(() => null)
+  const markdown = await import(`../../data/markdown/${id}.md`).catch(
+    () => null
+  )
   const content = await convertIntoHtml(markdown)
   return content
 }

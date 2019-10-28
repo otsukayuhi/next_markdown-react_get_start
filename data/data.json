@@ -1,0 +1,24 @@
+{
+  "post": [
+    {
+      "id": "get-start",
+      "title": "事前準備"
+    },
+    {
+      "id": "es2015",
+      "title": "ES2015+の基礎知識"
+    },
+    {
+      "id": "react-next",
+      "title": "React/Next.jsとは？"
+    },
+    {
+      "id": "emotion",
+      "title": "EmotionでCSS in JS"
+    },
+    {
+      "id": "next-export",
+      "title": "Next.jsの静的書き出し"
+    }
+  ]
+}

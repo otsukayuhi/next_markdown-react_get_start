@@ -1,5 +1,5 @@
 const fs = require('fs')
-const markdownFolder = 'src/markdown'
+const markdownFolder = 'data/markdown'
 
 const getPathsForMarkdown = () =>
   /**
