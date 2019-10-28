@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import BaseLayout from 'components/layout/BaseLayout'
-import { post } from 'gateway/posts'
+import BaseLayout from 'components/layouts/BaseLayout'
+import { post } from 'gateways/posts'
 import {
   WrapperStyle,
   HeadingWrapperStyle,

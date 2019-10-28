@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const NotFound = () => (
   <div>
-    <p>Not fount.</p>
+    <p>Not found.</p>
     <Link href="/">
       <a>Return to the top page.</a>
     </Link>

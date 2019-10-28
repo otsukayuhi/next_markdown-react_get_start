@@ -1,7 +1,7 @@
 import React from 'react'
-import BaseLayout from 'components/layout/BaseLayout'
-import Nav from 'components/Organism/Nav'
-import { BaseContentStyle } from 'components/layout/commonStyle'
+import BaseLayout from 'components/layouts/BaseLayout'
+import Nav from 'components/Organisms/Nav'
+import { BaseContentStyle } from 'components/layouts/commonStyle'
 import { WrapperStyle, SectionStyle } from './style'
 
 const Post = ({ content, id }) => (
