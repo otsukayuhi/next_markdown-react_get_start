@@ -5,6 +5,11 @@ import resetCss from 'ress'
 const globalStyle = css`
   ${resetCss}
 
+  ul[class],
+  li[class] {
+    padding: 0;
+    list-style: none;
+  }
   img {
     display: block;
     max-width: 100%;

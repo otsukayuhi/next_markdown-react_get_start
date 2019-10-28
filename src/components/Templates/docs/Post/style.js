@@ -4,10 +4,6 @@ import markdownStyle from 'github-markdown-css'
 
 export const WrapperStyle = styled.div`
   margin-left: 240px;
-  ul,
-  li {
-    padding: 0;
-  }
 
   ${markdownStyle}
   ${codeStyle}
