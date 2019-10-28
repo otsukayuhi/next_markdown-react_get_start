@@ -8,11 +8,11 @@ export const WrapperStyle = styled.nav`
   background-color: rgb(247, 247, 247);
 `
 
-export const Heading = styled.h2`
+export const HeadingStyle = styled.h2`
   font-size: 20px;
 `
 
-export const ListStyle = styled.ul`
+export const ListStyle = styled.ol`
   margin-top: 15px;
   padding-left: 1em;
 `

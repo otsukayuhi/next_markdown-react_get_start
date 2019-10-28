@@ -1,21 +1,21 @@
 import React from 'react'
 import BaseLayout from 'components/layout/BaseLayout'
-import Nav from 'components/organism/Nav'
+import Nav from 'components/Organism/Nav'
 import { BaseContentStyle } from 'components/layout/commonStyle'
-import { WrapStyle, SectionStyle } from './style'
+import { WrapperStyle, SectionStyle } from './style'
 
-const Docs = ({ content, id }) => (
+const Post = ({ content, id }) => (
   <BaseLayout>
     <Nav currentId={id} />
-    <WrapStyle>
+    <WrapperStyle>
       <BaseContentStyle>
         <SectionStyle
           className="markdown-body"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </BaseContentStyle>
-    </WrapStyle>
+    </WrapperStyle>
   </BaseLayout>
 )
 
-export default Docs
+export default Post

@@ -2,8 +2,13 @@ import styled from '@emotion/styled'
 import codeStyle from 'highlight.js/styles/atom-one-dark.css'
 import markdownStyle from 'github-markdown-css'
 
-export const WrapStyle = styled.div`
+export const WrapperStyle = styled.div`
   margin-left: 240px;
+  ul,
+  li {
+    padding: 0;
+  }
+
   ${markdownStyle}
   ${codeStyle}
 `

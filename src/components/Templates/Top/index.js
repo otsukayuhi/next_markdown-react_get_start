@@ -1,18 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
-import App from 'components/layout/BaseLayout'
+import BaseLayout from 'components/layout/BaseLayout'
 import { post } from 'gateway/posts'
 import {
   WrapperStyle,
-  HeadingWrapper,
+  HeadingWrapperStyle,
   HeadingStyle,
   HeadingInnerStyle,
   LeadStyle,
   ListStyle,
   ItemStyle
-} from 'components/templates/Top/style'
+} from './style'
 
-const Index = () => {
+const Top = () => {
   const items = post.map((item, index) => {
     const { title, id } = item
 
@@ -26,19 +26,19 @@ const Index = () => {
   })
 
   return (
-    <App>
+    <BaseLayout>
       <WrapperStyle>
-        <HeadingWrapper>
+        <HeadingWrapperStyle>
           <HeadingStyle>
             React勉強会 #1
             <HeadingInnerStyle>- ゆるふわ超入門編 -</HeadingInnerStyle>
           </HeadingStyle>
-        </HeadingWrapper>
+        </HeadingWrapperStyle>
         <LeadStyle>本日のLINE UP</LeadStyle>
         <ListStyle>{items}</ListStyle>
       </WrapperStyle>
-    </App>
+    </BaseLayout>
   )
 }
 
-export default Index
+export default Top

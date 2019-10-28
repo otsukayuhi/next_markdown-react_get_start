@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { post } from 'gateway/posts'
-import { WrapperStyle, Heading, ListStyle, ItemStyle } from './style'
+import { WrapperStyle, HeadingStyle, ListStyle, ItemStyle } from './style'
 
 const Nav = ({ currentId }) => {
   const items = post.map((item, index) => {
@@ -19,7 +19,7 @@ const Nav = ({ currentId }) => {
 
   return (
     <WrapperStyle>
-      <Heading>Index</Heading>
+      <HeadingStyle>Index</HeadingStyle>
       <ListStyle>{items}</ListStyle>
     </WrapperStyle>
   )

@@ -4,7 +4,7 @@ export const WrapperStyle = styled.div`
   height: 100vh;
 `
 
-export const HeadingWrapper = styled.div`
+export const HeadingWrapperStyle = styled.div`
   padding: 100px 0;
   background: #282c34;
 `

@@ -4,10 +4,6 @@ import resetCss from 'ress'
 
 const globalStyle = css`
   ${resetCss}
-  ul,
-  li {
-    list-style: none;
-  }
 
   img {
     display: block;
