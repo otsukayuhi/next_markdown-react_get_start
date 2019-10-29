@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { post } from 'gateways/posts'
+import { post } from 'gateways/getData'
 import { WrapperStyle, HeadingStyle, ListStyle, ItemStyle } from './style'
 
 const Nav = ({ currentId }) => {
