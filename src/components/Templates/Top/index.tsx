@@ -24,7 +24,7 @@ const items = post.map((item, index) => {
   )
 })
 
-const Top = () => (
+const Top: React.FC = () => (
   <BaseLayout>
     <WrapperStyle>
       <HeadingWrapperStyle>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import markdownStyle from 'github-markdown-css'
+import markdownStyle from 'github-markdown-css/github-markdown.css'
 import codeStyle from 'highlight.js/styles/atom-one-dark.css'
 
 export const WrapperStyle = styled.div`

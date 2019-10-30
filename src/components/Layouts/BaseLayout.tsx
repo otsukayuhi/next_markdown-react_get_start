@@ -1,6 +1,6 @@
 import React from 'react'
 import { Global, css } from '@emotion/core'
-import resetCss from 'ress'
+import resetCss from 'ress/dist/ress.min.css'
 
 const globalStyle = css`
   ${resetCss}

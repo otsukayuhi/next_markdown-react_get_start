@@ -1,4 +1,5 @@
 const fs = require('fs')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const markdownFolder = 'data/markdown'
 
 const getPathsForMarkdown = () =>
@@ -27,6 +28,13 @@ module.exports = {
       test: [/\.md$/, /\.css$/],
       use: 'raw-loader'
     })
+
+    if (config.resolve.plugins) {
+      config.resolve.plugins.push(new TsconfigPathsPlugin())
+    } else {
+      config.resolve.plugins = [new TsconfigPathsPlugin()]
+    }
+
     return config
   },
   async exportPathMap(defaultPathMap) {

@@ -1,12 +1,6 @@
 {
   "presets": ["next/babel"],
   "plugins": [
-    ["emotion"],
-    [
-      "module-resolver",
-      {
-        "root": ["./src"]
-      }
-    ]
+    ["emotion"]
   ]
 }
