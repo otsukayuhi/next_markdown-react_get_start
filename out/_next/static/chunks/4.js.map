@@ -1,1 +1,0 @@
-{"version":3,"file":"static/chunks/4.js","sources":["webpack:///./src/markdown/next-export.md"],"sourcesContent":["export default \"# 静的ファイルの書き出し\\n\\n```console\\n$ next build\\n$ next export\\n```\""],"mappings":";;;;;;;;;;AAAA;AAAA;;;;A","sourceRoot":""}

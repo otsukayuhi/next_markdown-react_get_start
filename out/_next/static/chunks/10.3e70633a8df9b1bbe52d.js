@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{"3h8g":function(n,e,o){"use strict";o.r(e),e.default="# \u9759\u7684\u30d5\u30a1\u30a4\u30eb\u306e\u66f8\u304d\u51fa\u3057\n\n```console\n$ next build\n$ next export\n```"}}]);
