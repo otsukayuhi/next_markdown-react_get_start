@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "allowJs": false,
-    "jsx": "preserve",
+    "jsx": "react",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
@@ -16,9 +16,9 @@
     "sourceMap": true,
     "noEmit": true,
     "lib": [
-      "es6",
+      "es2019",
       "dom",
-      "es2016"
+      "dom.iterable"
     ],
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -26,8 +26,10 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"]
-    },
+      "*": [
+        "./src/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules"
