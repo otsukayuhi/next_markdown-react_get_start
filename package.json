@@ -45,7 +45,7 @@
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
-    "lint": "eslint --fix src/**/*.tsx"
+    "lint": "eslint --fix src/**/*.{ts,tsx}"
   },
   "author": "",
   "license": "ISC",
