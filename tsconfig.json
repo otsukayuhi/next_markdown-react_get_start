@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "allowJs": false,
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
