@@ -16,7 +16,7 @@
     "sourceMap": true,
     "noEmit": true,
     "lib": [
-      "es2019",
+      "esnext",
       "dom",
       "dom.iterable"
     ],
