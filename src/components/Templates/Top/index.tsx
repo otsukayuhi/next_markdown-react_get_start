@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Link from 'next/link'
 import BaseLayout from 'components/Layouts/BaseLayout'
 import { TopContext } from 'pages/index'
+import { DataType } from 'gateways/getData'
 import {
   WrapperStyle,
   HeadingWrapperStyle,
@@ -11,6 +12,10 @@ import {
   ListStyle,
   ItemStyle
 } from './style'
+
+export type TopProps = {
+  data: DataType | null
+}
 
 const Top: React.FC = () => {
   const { pageData, post } = useContext(TopContext)

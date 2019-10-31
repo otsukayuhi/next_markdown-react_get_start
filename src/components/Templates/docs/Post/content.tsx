@@ -22,8 +22,7 @@ marked.setOptions({
 const convertIntoHtml = markdown => (markdown ? marked(markdown.default) : null)
 
 const PostContent = () => {
-  const foo = useContext(DocsContext)
-  const { content } = foo
+  const { content } = useContext(DocsContext)
   const html = convertIntoHtml(content)
   return (
     <WrapperStyle>
