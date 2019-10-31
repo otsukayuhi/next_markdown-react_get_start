@@ -5,26 +5,7 @@ import NotFound from 'components/Organisms/NotFound'
 import getData from 'gateways/getData'
 import getContent from 'gateways/getContent'
 
-const docsData: PostProps = {
-  content: {
-    default: ''
-  },
-  id: '',
-  data: {
-    pageData: {
-      title: '',
-      subtitle: ''
-    },
-    post: [
-      {
-        id: '',
-        title: ''
-      }
-    ]
-  }
-}
-
-export const DocsContext = React.createContext(docsData)
+export const DocsContext = React.createContext<PostProps>(null as any)
 
 const Page: NextPage<PostProps> = ({ id, content, data }) => (
   <DocsContext.Provider value={{ id, content, data }}>

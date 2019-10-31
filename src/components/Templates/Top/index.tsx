@@ -38,7 +38,7 @@ const Top: React.FC = () => {
         <HeadingWrapperStyle>
           <HeadingStyle>
             {title}
-            <HeadingInnerStyle>{subtitle}</HeadingInnerStyle>
+            {subtitle && <HeadingInnerStyle>{subtitle}</HeadingInnerStyle>}
           </HeadingStyle>
         </HeadingWrapperStyle>
         <LeadStyle>本日のLINE UP</LeadStyle>

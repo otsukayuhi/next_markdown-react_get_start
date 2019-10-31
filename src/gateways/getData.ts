@@ -5,7 +5,7 @@ export type PostType = {
 
 export type PageDataType = {
   title: string
-  subtitle: string
+  subtitle: string | null
 }
 
 export type GetDataArg = {
