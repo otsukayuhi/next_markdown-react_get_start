@@ -20,5 +20,9 @@
       "id": "next-export",
       "title": "Next.jsの静的書き出し"
     }
-  ]
+  ],
+  "top" : {
+    "title": "React勉強会 #1",
+    "subtitle": "- ゆるふわ超入門編 -"
+  }
 }

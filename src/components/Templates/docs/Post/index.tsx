@@ -5,15 +5,17 @@ import { BaseContentStyle } from 'components/Layouts/commonStyle'
 import Content from './content'
 import { WrapperStyle } from './style'
 
-const Post = ({ content, id }) => (
-  <BaseLayout>
-    <Nav currentId={id} />
-    <WrapperStyle>
-      <BaseContentStyle>
-        <Content content={content} />
-      </BaseContentStyle>
-    </WrapperStyle>
-  </BaseLayout>
-)
+const Post: React.FC = () => {
+  return (
+    <BaseLayout>
+      <Nav />
+      <WrapperStyle>
+        <BaseContentStyle>
+          <Content />
+        </BaseContentStyle>
+      </WrapperStyle>
+    </BaseLayout>
+  )
+}
 
 export default Post

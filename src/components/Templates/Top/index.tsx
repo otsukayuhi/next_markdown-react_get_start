@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import BaseLayout from 'components/Layouts/BaseLayout'
-import { post } from 'gateways/getData'
+import { TopContext } from 'pages/index'
 import {
   WrapperStyle,
   HeadingWrapperStyle,
@@ -12,31 +12,35 @@ import {
   ItemStyle
 } from './style'
 
-const items = post.map((item, index) => {
-  const { title, id } = item
+const Top: React.FC = () => {
+  const { pageData, post } = useContext(TopContext)
+  const { title, subtitle } = pageData
 
+  const items = post.map((item, index) => {
+    const { title, id } = item
+
+    return (
+      <ItemStyle key={id}>
+        <Link href="/docs/[id]" as={`/docs/${id}`}>
+          <a>{`${index + 1}. ${title}`}</a>
+        </Link>
+      </ItemStyle>
+    )
+  })
   return (
-    <ItemStyle key={id}>
-      <Link href="/docs/[id]" as={`/docs/${id}`}>
-        <a>{`${index + 1}. ${title}`}</a>
-      </Link>
-    </ItemStyle>
+    <BaseLayout>
+      <WrapperStyle>
+        <HeadingWrapperStyle>
+          <HeadingStyle>
+            {title}
+            <HeadingInnerStyle>{subtitle}</HeadingInnerStyle>
+          </HeadingStyle>
+        </HeadingWrapperStyle>
+        <LeadStyle>本日のLINE UP</LeadStyle>
+        <ListStyle>{items}</ListStyle>
+      </WrapperStyle>
+    </BaseLayout>
   )
-})
-
-const Top: React.FC = () => (
-  <BaseLayout>
-    <WrapperStyle>
-      <HeadingWrapperStyle>
-        <HeadingStyle>
-          React勉強会 #1
-          <HeadingInnerStyle>- ゆるふわ超入門編 -</HeadingInnerStyle>
-        </HeadingStyle>
-      </HeadingWrapperStyle>
-      <LeadStyle>本日のLINE UP</LeadStyle>
-      <ListStyle>{items}</ListStyle>
-    </WrapperStyle>
-  </BaseLayout>
-)
+}
 
 export default Top

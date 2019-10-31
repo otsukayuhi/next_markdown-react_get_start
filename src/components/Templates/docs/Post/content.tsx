@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import marked from 'marked'
 import hljs from 'highlight.js'
+import { DocsContext } from 'pages/docs/[id]'
 import {
   WrapperStyle,
   ContentStyle,
@@ -20,7 +21,9 @@ marked.setOptions({
 // 取得できなければ、nullを返す
 const convertIntoHtml = markdown => (markdown ? marked(markdown.default) : null)
 
-const PostContent = ({ content }) => {
+const PostContent = () => {
+  const foo = useContext(DocsContext)
+  const { content } = foo
   const html = convertIntoHtml(content)
   return (
     <WrapperStyle>

@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
-import { post } from 'gateways/getData'
+import { DocsContext } from 'pages/docs/[id]'
 import { WrapperStyle, HeadingStyle, ListStyle, ItemStyle } from './style'
 
-const Nav = ({ currentId }) => {
-  const items = post.map((item, index) => {
+const Nav = () => {
+  const { data, id: currentId } = useContext(DocsContext)
+
+  if (data === null) return null
+
+  const items = data.post.map((item, index) => {
     const { title, id } = item
     const itemText = `${index + 1}. ${title}`
 
