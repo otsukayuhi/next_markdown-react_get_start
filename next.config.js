@@ -2,6 +2,8 @@ const fs = require('fs')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const markdownFolder = 'data/markdown'
 
+const production = process.env.NODE_ENV === 'production'
+
 const getPathsForMarkdown = () =>
   /**
    * acc: accumulator（アキュムレーター）
@@ -22,6 +24,20 @@ const getPathsForMarkdown = () =>
     })
   }, {})
 
+// npm run export 時のみ実行
+const exportPathMap = production
+  ? async function(defaultPathMap) {
+      const pages = {
+        '/': { page: '/' },
+        ...getPathsForMarkdown()
+      }
+      return {
+        ...defaultPathMap,
+        ...pages
+      }
+    }
+  : null
+
 module.exports = {
   webpack: config => {
     config.module.rules.push({
@@ -37,14 +53,5 @@ module.exports = {
 
     return config
   },
-  async exportPathMap(defaultPathMap) {
-    const pages = {
-      '/': { page: '/' },
-      ...getPathsForMarkdown()
-    }
-    return {
-      ...defaultPathMap,
-      ...pages
-    }
-  }
+  exportPathMap
 }
