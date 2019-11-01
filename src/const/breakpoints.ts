@@ -1,5 +1,9 @@
-export const xs = 0
-export const sm = 576
-export const md = 768
-export const lg = 992
-export const xl = 1200
+enum BreakPoints {
+  xs = 0,
+  sm = 576,
+  md = 768,
+  lg = 992,
+  xl = 1200
+}
+
+export default BreakPoints
