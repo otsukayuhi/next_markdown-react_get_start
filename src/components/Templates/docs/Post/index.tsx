@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import BaseLayout from 'components/Layouts/BaseLayout'
 import Nav from 'components/Organisms/Nav'
+import { DocsContext } from 'pages/docs/[id]'
 import { ContentType } from 'gateways/getContent'
 import { DataType } from 'gateways/getData'
 import { BaseContentStyle } from 'components/Layouts/commonStyle'
@@ -9,19 +10,22 @@ import { WrapperStyle } from './style'
 
 export type PostProps = {
   content: ContentType | null
-  id: string | string[]
+  currentId: string
   data: DataType | null
 }
 
-const Post: React.FC = () => (
-  <BaseLayout>
-    <Nav />
-    <WrapperStyle>
-      <BaseContentStyle>
-        <Content />
-      </BaseContentStyle>
-    </WrapperStyle>
-  </BaseLayout>
-)
+const Post: React.FC = () => {
+  const { data, currentId } = useContext(DocsContext)
+  return (
+    <BaseLayout>
+      {data && <Nav {...{ data, currentId }} />}
+      <WrapperStyle>
+        <BaseContentStyle>
+          <Content />
+        </BaseContentStyle>
+      </WrapperStyle>
+    </BaseLayout>
+  )
+}
 
 export default Post

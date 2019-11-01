@@ -1,11 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { DocsContext } from 'pages/docs/[id]'
 import { WrapperStyle, HeadingStyle, ListStyle, ItemStyle } from './style'
+import { DataType } from 'gateways/getData'
 
-const Nav = () => {
-  const { data, id: currentId } = useContext(DocsContext)
+type NavProps = {
+  data: DataType
+  currentId: string
+}
 
+const Nav: React.FC<NavProps> = ({ data, currentId }) => {
   if (data === null) return null
 
   const items = data.post.map((item, index) => {

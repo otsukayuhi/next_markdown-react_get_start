@@ -7,17 +7,17 @@ import getContent from 'gateways/getContent'
 
 export const DocsContext = React.createContext<PostProps>(null as any)
 
-const Page: NextPage<PostProps> = ({ id, content, data }) => (
-  <DocsContext.Provider value={{ id, content, data }}>
-    {content ? <Post /> : <NotFound />}
+const Page: NextPage<PostProps> = props => (
+  <DocsContext.Provider value={props}>
+    {props.content ? <Post /> : <NotFound />}
   </DocsContext.Provider>
 )
 
-Page.getInitialProps = async ({ query }) => {
-  const { id } = query
-  const content = !Array.isArray(id) ? await getContent(id) : null
+Page.getInitialProps = async ({ query: { id } }) => {
+  const currentId = !Array.isArray(id) ? id : id[0]
+  const content = await getContent(currentId)
   const data = await getData()
-  return { id, content, data }
+  return { currentId, content, data }
 }
 
 export default Page
