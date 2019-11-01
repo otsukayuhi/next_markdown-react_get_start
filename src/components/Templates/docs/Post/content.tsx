@@ -21,7 +21,7 @@ marked.setOptions({
 // 取得できなければ、nullを返す
 const convertIntoHtml = markdown => (markdown ? marked(markdown.default) : null)
 
-const PostContent = () => {
+const PostContent: React.FC = () => {
   const { content } = useContext(DocsContext)
   const html = convertIntoHtml(content)
   return (

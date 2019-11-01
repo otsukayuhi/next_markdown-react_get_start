@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const NotFound = () => (
+const NotFound: React.FC = () => (
   <div>
     <p>Not found.</p>
     <Link href="/">

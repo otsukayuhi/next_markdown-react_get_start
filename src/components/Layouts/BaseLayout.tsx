@@ -16,7 +16,7 @@ const globalStyle = css`
   }
 `
 
-const BaseLayout = ({ children }) => (
+const BaseLayout: React.FC = ({ children }) => (
   <>
     <Global styles={globalStyle} />
     {children}
