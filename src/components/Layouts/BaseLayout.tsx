@@ -5,6 +5,10 @@ import resetCss from 'ress/dist/ress.min.css'
 const globalStyle = css`
   ${resetCss}
 
+  body {
+    font-family: sans-serif;
+  }
+
   ul[class],
   li[class] {
     padding: 0;

@@ -3,7 +3,7 @@ import BreakPoints from 'const/BreakPoints'
 
 export const BaseContentStyle = styled.div`
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 60px 20px 30px;
   min-width: 200px;
   max-width: 880px;
 

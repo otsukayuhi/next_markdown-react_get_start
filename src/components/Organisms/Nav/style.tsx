@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 export const WrapperStyle = styled.nav`
-  position: fixed;
   padding: 50px 20px;
   width: 240px;
   height: 100vh;
