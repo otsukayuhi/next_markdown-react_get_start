@@ -2,15 +2,15 @@
   "post": [
     {
       "id": "get-start",
-      "title": "事前準備"
+      "title": "Reactをはじめよう"
     },
     {
       "id": "es2015",
       "title": "ES2015+の基礎知識"
     },
     {
-      "id": "react-next",
-      "title": "React/Next.jsとは？"
+      "id": "nextjs",
+      "title": "Next.jsとは？"
     },
     {
       "id": "emotion",
