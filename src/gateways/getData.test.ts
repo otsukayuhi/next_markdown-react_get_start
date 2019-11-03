@@ -1,5 +1,6 @@
 import getData from './getData'
 
+// TODO: 取得失敗したときのテストをどうやってかくのか？
 describe('gateways/getData', () => {
   it('引数がないときはnullを返す', async () => {
     const data = await getData({})
