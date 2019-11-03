@@ -16,7 +16,7 @@ const Page: NextPage<PostProps> = props => (
 Page.getInitialProps = async ({ query: { id } }) => {
   const currentId = !Array.isArray(id) ? id : id[0]
   const content = await getContent(currentId)
-  const data = await getData()
+  const data = await getData({ isPost: true })
   return { currentId, content, data }
 }
 

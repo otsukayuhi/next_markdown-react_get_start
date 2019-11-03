@@ -6,12 +6,11 @@ import getData, { DataType } from 'gateways/getData'
 export const TopContext = React.createContext<DataType>(null as any)
 
 const Page: NextPage<TopProps> = ({ data }) => {
-  const topData = data || {
+  const topData: DataType = data || {
     pageData: {
       title: 'トップページ',
       subtitle: null
-    },
-    post: []
+    }
   }
   return (
     <TopContext.Provider value={topData}>
@@ -21,7 +20,7 @@ const Page: NextPage<TopProps> = ({ data }) => {
 }
 
 Page.getInitialProps = async () => {
-  const data = await getData()
+  const data = await getData({ pageName: 'top', isPost: true })
   return { data }
 }
 

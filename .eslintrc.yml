@@ -1,4 +1,6 @@
 parser: '@typescript-eslint/parser'
+env:
+  jest: true
 plugins:
   - react
   - react-hooks

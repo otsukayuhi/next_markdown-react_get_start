@@ -19,30 +19,36 @@ export type TopProps = {
 
 const Top: React.FC = () => {
   const { pageData, post } = useContext(TopContext)
-  const { title, subtitle } = pageData
 
-  const items = post.map((item, index) => {
-    const { title, id } = item
+  const items = !post
+    ? null
+    : post.map((item, index) => {
+        const { title, id } = item
 
-    return (
-      <ItemStyle key={id}>
-        <Link href="/docs/[id]" as={`/docs/${id}`}>
-          <a>{`${index + 1}. ${title}`}</a>
-        </Link>
-      </ItemStyle>
-    )
-  })
+        return (
+          <ItemStyle key={id}>
+            <Link href="/docs/[id]" as={`/docs/${id}`}>
+              <a>{`${index + 1}. ${title}`}</a>
+            </Link>
+          </ItemStyle>
+        )
+      })
+
   return (
     <BaseLayout>
       <WrapperStyle>
         <HeadingWrapperStyle>
-          <HeadingStyle>
-            {title}
-            {subtitle && <HeadingInnerStyle>{subtitle}</HeadingInnerStyle>}
-          </HeadingStyle>
+          {pageData && (
+            <HeadingStyle>
+              {pageData.title}
+              {pageData.subtitle && (
+                <HeadingInnerStyle>{pageData.subtitle}</HeadingInnerStyle>
+              )}
+            </HeadingStyle>
+          )}
         </HeadingWrapperStyle>
         <LeadStyle>本日のLINE UP</LeadStyle>
-        <ListStyle>{items}</ListStyle>
+        {items && <ListStyle>{items}</ListStyle>}
       </WrapperStyle>
     </BaseLayout>
   )
