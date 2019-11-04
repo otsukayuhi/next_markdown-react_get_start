@@ -24,7 +24,10 @@ const getPathsForMarkdown = () =>
     })
   }, {})
 
-// npm run export 時のみ実行
+/**
+ * npm run export 時のみ実行
+ * now 使ってるので不要かも
+ */
 const exportPathMap = production
   ? async function(defaultPathMap) {
       const pages = {
@@ -45,6 +48,10 @@ module.exports = {
       use: 'raw-loader'
     })
 
+    /**
+     * TypeScriptでパスを解決するやつ
+     * https://github.com/zeit/next.js/issues/7935
+     */
     if (config.resolve.plugins) {
       config.resolve.plugins.push(new TsconfigPathsPlugin())
     } else {
