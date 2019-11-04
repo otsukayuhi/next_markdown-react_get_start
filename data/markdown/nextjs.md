@@ -101,7 +101,30 @@ $ npm run dev
 
 これもOK
 
-## JSXの書き方
+## JSX
+
+JSXを使用すると、JavaScript上でHTMLのような構文が使えます。
+
+```javascript
+// JSX
+const Button = <button className="my-button">ボタン</button>
+```
+
+これは、`React.createElement()`の糖衣構文で、JSXを使わないと下記の記述になります。
+
+```javascript
+const Button = React.createElement("button", {
+  className: "my-button"
+}, "ボタン");
+```
+
+極論、JSXを使わずに`React.createElement()`を使ってもなんの問題ありません。
+
+[JSXを使う理由](https://ja.reactjs.org/docs/introducing-jsx.html#why-jsx)が公式のガイドにありますので、興味のある方はどうぞ。
+
+[オンライン Babel コンパイラ](https://babeljs.io/repl/#?presets=react&code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8AEhlogO5xnr0AhLQD0jVgG4iAXyJA)を使うと、JSXがどのようなJavaScriptに変換されるのかを確認できます。
+
+## Next.js（React）を書いてみよう
 
 `pages/index.js`を、省略形なしの形に変更。
 
@@ -118,7 +141,7 @@ const Index = () => {
 export default Index
 ```
 
-JSXで子要素を使う。
+HTMLのように、JSXでも子要素を使うことができます。
 
 ```javascript
 import React from 'react'
@@ -136,7 +159,7 @@ const Index = () => {
 export default Index
 ```
 
-`JSX`内は`{}`でJavaScriptを使う。
+JSXは`{}`でJavaScriptを使うことができます。
 
 ```javascript
 import React from 'react'
@@ -154,7 +177,7 @@ const Index = () => {
 export default Index
 ```
 
-コンポーネントをJSX内で使う。
+`Heading`コンポーネントを作って、JSX内で使ってみましょう。
 
 ```javascript
 import React from 'react'
@@ -183,7 +206,7 @@ const Index = () => {
 export default Index
 ```
 
-子要素を渡す。
+`Heading`コンポーネントに、子要素を渡してみます。
 
 ```javascript
 import React from 'react'
@@ -210,7 +233,7 @@ const Index = () => {
 export default Index
 ```
 
-`div`がいらねえとき。
+`div`がいらねえときは、`React.Fragment`が便利です。
 
 ```javascript
 import React from 'react'
@@ -235,7 +258,7 @@ const Index = () => {
 export default Index
 ```
 
-`div`がいらねえとき2。
+`React.Fragment`は、糖衣構文として`<></>`とも使えます。記述量が遥かに少なくてすむので、とくに理由がなければ、こちらを使用しましょう。
 
 ```javascript
 import React from 'react'
@@ -260,7 +283,7 @@ const Index = () => {
 export default Index
 ```
 
-ファイルを分けよう！
+ファイルを分けてみましょう。
 
 ```javascript
 // components/Heading.js
@@ -290,7 +313,7 @@ const Index = () => {
 export default Index
 ```
 
-mapで要素の反復処理。
+`map`メソッドで要素の反復処理をしてみましょう。
 
 ```javascript
 // pages/index.js
@@ -319,7 +342,40 @@ const Index = () => {
 export default Index
 ```
 
-`Link`コンポーネントでルーティング。
+`onClick`でイベント発火できます。
+
+```javascript
+// pages/index.js
+import React from 'react'
+import Heading from '../components/Heading'
+
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
+
+const Index = () => {
+  const text = 'Next.js!'
+  return (
+    <>
+      <Heading>
+        <span>{`Hello, ${text}`}</span>
+      </Heading>
+      <ul>
+        {member.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+
+      {/* onClickに関数を書く */}
+      <button onClick={() => console.log('onClick')}>ボタン</button>
+    </>
+  )
+}
+
+export default Index
+```
+
+### Next.js独自の機能
+
+`Link`コンポーネントでルーティングさせてみましょう。
 
 ```javascript
 // pages/index.js
@@ -341,7 +397,8 @@ const Index = () => {
           <li key={index}>{name}</li>
         ))}
       </ul>
-      
+      <button onClick={() => console.log('onClick')}>ボタン</button>
+
       {/* Linkコンポーネントでルーティングできる */}
       <Link href="/batman"><a>バットマンページへ</a></Link>
     </>
@@ -353,6 +410,10 @@ export default Index
 
 `pages/batman.js`を作成した上、**バットマンページへ**のリンクをクリックすると、再読み込みなしで見込みページ遷移できます。
 
+```console
+$ touch pages/batman.js
+```
+
 ```javascript
 // pages/batman.js
 import React from 'react'
@@ -362,46 +423,15 @@ const Batman = () => <div>batman</div>
 export default Batman
 ```
 
-onClickでイベント発火。
+### `getInitialProps`で非同期データ取得
 
-```javascript
-// pages/index.js
-import React from 'react'
-import Link from 'next/link'
-import Heading from '../components/Heading'
+バットマンAPIを叩いて、非同期に情報を取得してみましょう。ページ読み込み時になにかしらの処理をする場合は、`getInitialProps`メソッドを使います。
 
-const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
+`getInitialProps`は、Next.jsのライフサイクルメソッドです。ページが読み込まれたときはサーバーサイドで実行され、以降、`Link`コンポーネントによって別の`pages`コンポーネントへ移動した場合にクライアントサイドで実行されます。
 
-const Index = () => {
-  const text = 'Next.js!'
-  return (
-    <>
-      <Heading>
-        <span>{`Hello, ${text}`}</span>
-      </Heading>
-      <ul>
-        {member.map((name, index) => (
-          <li key={index}>{name}</li>
-        ))}
-      </ul>
-      <Link href="/batman">
-        <a>aboutページへ</a>
-      </Link>
+Next.jsはサーバーサイドレンダリングのためのフレームワークなので、今書いているJavaScriptが**サーバーサイド（Node.js）なのか？**それとも、**クライアントサイドなのか？**を意識することが必要です。
 
-      {/* onClickでイベントハンドラを登録できる */}
-      <button onClick={() => console.log('onClick')} />
-    </>
-  )
-}
-
-export default Index
-```
-
-`getInitialProps`で非同期データ取得。
-
-バットマンAPIを叩いて、非同期に情報を取得してみましょう。
-
-Node.jsで使える`isomorphic-unfetch`を使ってみます。
+Node.jsではfetchメソッドが使えないので、`isomorphic-unfetch`をインストールして使います。
 
 ```
 $ npm i isomorphic-unfetch
@@ -412,26 +442,23 @@ $ npm i isomorphic-unfetch
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
 
-const Batman = ({ shows }) => {
-  return (
-    <>
-      <h1>Batman TV Shows</h1>
-      <ul>
-        {shows.map(show => (
-          <li key={show.id}>
-            <div><img src={show.image.medium}></div>
-            <div>{show.name}</div>
-          </li>
-        ))}
-      </ul>
-    </>
-  )
-}
+const Batman = ({ shows }) => (
+  <div>
+    <h1>Batman TV Shows</h1>
+    <ul>
+      {shows.map(show => (
+        <li key={show.id}>
+          <div><img src={show.image.medium} /></div>
+          <div>{show.name}</div>
+        </li>
+      ))}
+    </ul>
+  </div>
+)
 
 Batman.getInitialProps = async () => {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
-  
+  const data = await res.json();
   return {
     shows: data.map(entry => entry.show)
   }
@@ -442,4 +469,4 @@ export default Batman
 
 より掘り下げたい場合は、[公式ドキュメント](https://nextjs.org/docs)を確認してください。
 
-また、GitHubの**[example](https://github.com/zeit/next.js/tree/canary/examples)**に豊富なサンプルがあるので、とても参考になります。
+また、GitHubの[example](https://github.com/zeit/next.js/tree/canary/examples)に豊富なサンプルがあるので、とても参考になります。

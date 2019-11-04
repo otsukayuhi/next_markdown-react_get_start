@@ -1,20 +1,18 @@
 # EmotionでCSS in JS
 
-**Emotion**とは、JavaScriptでCSSスタイルを記述するために設計されたライブラリ。  
-後発ライブラリのため、**styled-component**等の良いとこ取りをしている。
+**Emotion**とは、JavaScriptでCSSスタイルを記述するために設計されたライブラリです。後発ライブラリのため、**styled-component**等の良いとこ取りをしています。
 
 必要なパッケージをインストールしましょ。
 
 - @emotion/styled
-- @emotion/core
 
 ```console
-$ npm i @emotion/styled @emotion/core
+$ npm i @emotion/styled
 ```
 
-## styled-componentを使ってみよう
+## Emotionを使ってみよう
 
-**@emotion/styled**を使い、**styled-component**を使ってみましょう。
+**@emotion/styled**を使い、styled-componentライクなコンポーネントを作ってみます。
 
 ```javascript
 // components/Heading.js
@@ -27,14 +25,14 @@ import styled from '@emotion/styled'
 const HeadingStyle = styled.h1`
   font-size: 20px;
   color: red;
-`;
+`
 
 const Heading = ({ children }) => <HeadingStyle>{children}</HeadingStyle>
 
 export default Heading
 ```
 
-CSS部分はテンプレートリテラルなので、${}内でJavaScriptが利用できます。
+CSS部分はテンプレートリテラルなので、`${}`内でJavaScriptが利用できます。
 
 ```javascript
 // components/Heading.js
@@ -47,7 +45,7 @@ const fontSize = 20
 const HeadingStyle = styled.h1`
   font-size: ${fontSize}px;
   color: red;
-`;
+`
 
 const Heading = ({ children }) => <HeadingStyle>{children}</HeadingStyle>
 
@@ -65,7 +63,7 @@ import styled from '@emotion/styled'
 export const HeadingStyle = styled.h1`
   font-size: ${props => props.fontSize}px;
   color: red;
-`;
+`
 ```
 
 ```javascript
@@ -95,12 +93,10 @@ export const HeadingStyle = styled.h1`
   &:hover {
     color: green;
   }
-`;
+`
 ```
 
 ## CSS in JSのメリット
-
-**CSS in JS**のメリットとして、CSS上でJavaScriptが使えるという点があります。
 
 たとえば、ブレークポイントをJavaScriptで管理すれば、Carouselのライブラリ等と共通の値を使うことができます。
 
@@ -132,7 +128,7 @@ export const HeadingStyle = styled.h1`
 `;
 ```
 
-たとえば、**react-slick**の**breakpoint**値にできます。
+**react-slick**を使ってみましょ。
 
 https://react-slick.neostack.com/
 
@@ -172,7 +168,7 @@ const settings = {
   slidesToScroll: 2,
   responsive: [
     {
-      breakpoint: breakPoints.md,
+      breakpoint: breakPoints.md, // const/breakPoints.jsの値が使える
       settings: {
         infinite: true,
         slidesToShow: 1,
@@ -187,11 +183,11 @@ const SliderWrapperStyle = styled.div`
   ${slickThemeCss}
 `
 
-const MySlider = ({ slideItems }) => (
+const MySlider = ({ member }) => (
   <SliderWrapperStyle>
     <Slider {...settings}>
-     {slideItems.map(slideItem => {
-       <div key={slideItem}>{slideItem}</div>
+     {member.map((animal, index) => {
+       <div key={index}>{animal}</div>
      })}
     </Slider>
   </SliderWrapperStyle>
@@ -205,7 +201,7 @@ export default MySlider
 import React from 'react'
 import Link from 'next/link'
 import Heading from '../components/Heading'
-import MySlider from '../components/MySlider'
+import MySlider from '../components/MySlider' // MySliderをインポート
 
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
@@ -213,18 +209,19 @@ const Index = () => {
   const text = 'Next.js!'
   return (
     <>
-      {/* MySliderコンポーネント */}
-      <MySlider member={member} />
       <Heading>
         <span>{`Hello, ${text}`}</span>
       </Heading>
-      <Link href='/batman'>
-        <a>aboutページへ</a>
-      </Link>
-      <button onClick={() => console.log('onClick')} />
+      <MySlider member={member}></MySlider>
+      <button onClick={() => console.log('onClick')}>ボタン</button>
+      <Link href="/batman"><a>バットマンページへ</a></Link>
     </>
   )
 }
 
 export default Index
 ```
+
+他にも**Emotion**でいろいろなことができるので、ぜひ掘り下げてみてください。
+
+公式ガイド：https://emotion.sh/docs/introduction
