@@ -135,41 +135,100 @@ export const HeadingStyle = styled.h1`
 https://react-slick.neostack.com/
 
 ```console
-$ npm i react-slick
+$ npm i react-slick slick-carousel raw-loader
+$ touch next.config.js
 ```
 
+**raw-loader**でCSSファイルを扱えるようにします。
+
 ```javascript
+module.exports = {
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.css$/,
+      use: 'raw-loader'
+    })
+  }
+}
+```
+
+スライダーコンポーネントを作り、トップページで使ってみましょう。
+
+```javascript
+// components/MySlider.js
 import React from 'react'
-import Slider from "react-slick"
+import styled from '@emotion/styled'
+import Slider from 'react-slick'
+import slickCss from 'slick-carousel/slick/slick.css'
+import slickThemeCss from 'slick-carousel/slick/slick-theme.css'
 import breakPoints from '../const/breakPoints'
 
 const settings = {
-  dots: true,
   infinite: false,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  initialSlide: 0,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   responsive: [
     {
       breakpoint: breakPoints.md,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
         infinite: true,
-        dots: true
+        slidesToShow: 1,
+        slidesToScroll: 1,
       }
     }
   ]
 };
 
+const SliderWrapperStyle = styled.div`
+  ${slickCss}
+  ${slickThemeCss}
+`
+
+const slideItems = ['slide1', 'slide2', 'slide3', 'slide4', 'slide5']
+
 const MySlider = () => (
-  <Slider {...settings}>
-    <div>slide1</div>
-    <div>slide2</div>
-    <div>slide3</div>
-  </Slider>
+  <SliderWrapperStyle>
+    <Slider {...settings}>
+     {slideItems.map(slideItem => {
+       <div key={slideItem}>{slideItem}</div>
+     })}
+    </Slider>
+  </SliderWrapperStyle>
 )
 
 export default MySlider
+```
+
+```javascript
+// pages/index.js
+import React from 'react'
+import Link from 'next/link'
+import Heading from '../components/Heading'
+import MySlider from '../components/MySlider'
+
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
+
+const Index = () => {
+  const text = 'Next.js!'
+  return (
+    <>
+      {/* MySliderコンポーネント */}
+      <MySlider />
+      <Heading>
+        <span>{`Hello, ${text}`}</span>
+      </Heading>
+      <ul>
+        {member.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+      <Link href='/batman'>
+        <a>aboutページへ</a>
+      </Link>
+      <button onClick={() => console.log('onClick')} />
+    </>
+  )
+}
+
+export default Index
 ```

@@ -23,7 +23,7 @@ Reactは、本来クライアントサイドで仮想DOMを生成し、それを
 ```
 
 ```js
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
 
 // クライアントサイドでDOMを書き換える
@@ -294,14 +294,14 @@ mapで要素の反復処理。
 
 ```javascript
 // pages/index.js
-import React from "react"
-import Heading from "../components/Heading"
+import React from 'react'
+import Heading from '../components/Heading'
 
 // 配列
-const member = ["ネズミ", "牛", "トラ", "うさぎ"]
+const member = ['ネズミ", "牛", "トラ", "うさぎ"]
 
 const Index = () => {
-  const text = "Next.js!"
+  const text = 'Next.js!'
   return (
     <>
       <Heading>
@@ -323,14 +323,14 @@ export default Index
 
 ```javascript
 // pages/index.js
-import React from "react"
+import React from 'react'
 import Link from 'next/link' // Linkコンポーネントを追加
-import Heading from "../components/Heading"
+import Heading from '../components/Heading'
 
-const member = ["ネズミ", "牛", "トラ", "うさぎ"]
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
 const Index = () => {
-  const text = "Next.js!"
+  const text = 'Next.js!'
   return (
     <>
       <Heading>
@@ -366,14 +366,14 @@ onClickでイベント発火。
 
 ```javascript
 // pages/index.js
-import React from "react"
+import React from 'react'
 import Link from 'next/link'
-import Heading from "../components/Heading"
+import Heading from '../components/Heading'
 
-const member = ["ネズミ", "牛", "トラ", "うさぎ"]
+const member = ['ネズミ", "牛", "トラ", "うさぎ"]
 
 const Index = () => {
-  const text = "Next.js!"
+  const text = 'Next.js!'
   return (
     <>
       <Heading>
