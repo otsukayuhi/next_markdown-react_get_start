@@ -298,7 +298,7 @@ import React from 'react'
 import Heading from '../components/Heading'
 
 // 配列
-const member = ['ネズミ", "牛", "トラ", "うさぎ"]
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
 const Index = () => {
   const text = 'Next.js!'
@@ -370,7 +370,7 @@ import React from 'react'
 import Link from 'next/link'
 import Heading from '../components/Heading'
 
-const member = ['ネズミ", "牛", "トラ", "うさぎ"]
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
 const Index = () => {
   const text = 'Next.js!'

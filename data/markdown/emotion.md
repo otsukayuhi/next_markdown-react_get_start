@@ -98,6 +98,8 @@ export const HeadingStyle = styled.h1`
 `;
 ```
 
+## CSS in JSのメリット
+
 **CSS in JS**のメリットとして、CSS上でJavaScriptが使えるという点があります。
 
 たとえば、ブレークポイントをJavaScriptで管理すれば、Carouselのライブラリ等と共通の値を使うことができます。
@@ -142,6 +144,7 @@ $ touch next.config.js
 **raw-loader**でCSSファイルを扱えるようにします。
 
 ```javascript
+// next.config.js
 module.exports = {
   webpack: config => {
     config.module.rules.push({
@@ -184,9 +187,7 @@ const SliderWrapperStyle = styled.div`
   ${slickThemeCss}
 `
 
-const slideItems = ['slide1', 'slide2', 'slide3', 'slide4', 'slide5']
-
-const MySlider = () => (
+const MySlider = ({ slideItems }) => (
   <SliderWrapperStyle>
     <Slider {...settings}>
      {slideItems.map(slideItem => {
@@ -213,15 +214,10 @@ const Index = () => {
   return (
     <>
       {/* MySliderコンポーネント */}
-      <MySlider />
+      <MySlider member={member} />
       <Heading>
         <span>{`Hello, ${text}`}</span>
       </Heading>
-      <ul>
-        {member.map((name, index) => (
-          <li key={index}>{name}</li>
-        ))}
-      </ul>
       <Link href='/batman'>
         <a>aboutページへ</a>
       </Link>
