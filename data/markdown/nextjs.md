@@ -50,6 +50,9 @@ ReactDOM.render(
 - react-dom
 
 ```console
+$ mkdir nextjs-sample
+$ cd nextjs-sample
+$ npm init -y
 $ npm i next react react-dom
 ```
 
