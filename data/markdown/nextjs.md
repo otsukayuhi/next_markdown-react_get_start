@@ -71,7 +71,7 @@ $ mkdir pages
 $ touch pages/index.js
 ```
 
-```javascript
+```jsx
 // pages/index.js
 export default () => <h1>Hello, Next.js!</h1>
 ```
@@ -103,14 +103,14 @@ $ npm run dev
 
 JSXを使用すると、JavaScript上でHTMLのような構文が使えます。
 
-```javascript
+```jsx
 // JSX
 const Button = <button className="my-button">ボタン</button>
 ```
 
 これは、`React.createElement()`の糖衣構文で、JSXを使わないと下記の記述になります。
 
-```javascript
+```jsx
 const Button = React.createElement("button", {
   className: "my-button"
 }, "ボタン");
@@ -126,11 +126,11 @@ const Button = React.createElement("button", {
 
 `pages/index.js`を、省略形なしの形に変更。
 
-```javascript
+```jsx
 import React from 'react' // Next.jsでは省略可能
 
 // returnでJSXを返す関数をコンポーネントと呼ぶ
-const Index = () => {
+function Index() {
   return <h1>Hello, Next.js!</h1>
 }
 
@@ -141,10 +141,10 @@ export default Index
 
 HTMLのように、JSXでも子要素を使うことができます。
 
-```javascript
+```jsx
 import React from 'react'
 
-const Index = () => {
+function Index() {
   // ()で括り、;の自動挿入に対応
   // returnで返すJSXは必ず1つの要素
   return (
@@ -159,10 +159,10 @@ export default Index
 
 JSXは`{}`でJavaScriptを使うことができます。
 
-```javascript
+```jsx
 import React from 'react'
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <div>
@@ -177,16 +177,16 @@ export default Index
 
 `Heading`コンポーネントを作って、JSX内で使ってみましょう。
 
-```javascript
+```jsx
 import React from 'react'
 
 // 見出し用のコンポーネント
-const Heading = props => {
+function Heading(props) => {
   // 属性の値は、オブジェクトのプロパティとして渡される
   return <h1>{props.text}</h1>
 }
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <div>
@@ -206,16 +206,16 @@ export default Index
 
 `Heading`コンポーネントに、子要素を渡してみます。
 
-```javascript
+```jsx
 import React from 'react'
 
 // Propsはオブジェクトなので、分割代入が使える
-const Heading = ({ children }) => {
+function Heading({ children }) {
   // childrenで子要素を受け取る
   return <h1>{children}</h1>
 }
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
 
   return (
@@ -233,14 +233,14 @@ export default Index
 
 `div`がいらねえときは、`React.Fragment`が便利です。
 
-```javascript
+```jsx
 import React from 'react'
 
-const Heading = ({ children }) => {
+function Heading({ children }) {
   return <h1>{children}</h1>
 }
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   // React.Fragmentを使うとその要素はレンダリングされない
   return (
@@ -258,14 +258,14 @@ export default Index
 
 `React.Fragment`は、糖衣構文として`<></>`とも使えます。記述量が遥かに少なくてすむので、とくに理由がなければ、こちらを使用しましょう。
 
-```javascript
+```jsx
 import React from 'react'
 
-const Heading = ({ children }) => {
+function Heading({ children }) {
   return <h1>{children}</h1>
 }
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   // <React.Fragment></React.Fragment>は<></>とも書ける
   return (
@@ -283,20 +283,22 @@ export default Index
 
 ファイルを分けてみましょう。
 
-```javascript
+```jsx
 // components/Heading.js
 // {} と return を省略できる
-const Heading = ({ children }) => <h1>{children}</h1>
+function Heading({ children }) {
+  return <h1>{children}</h1>
+}
 
 export default Heading
 ```
 
-```javascript
+```jsx
 // pages/index.js
 import React from 'react'
 import Heading from '../components/Heading'
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <>
@@ -313,7 +315,7 @@ export default Index
 
 `map`メソッドで要素の反復処理をしてみましょう。
 
-```javascript
+```jsx
 // pages/index.js
 import React from 'react'
 import Heading from '../components/Heading'
@@ -321,7 +323,7 @@ import Heading from '../components/Heading'
 // 配列
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <>
@@ -342,14 +344,14 @@ export default Index
 
 `onClick`でイベント発火できます。
 
-```javascript
+```jsx
 // pages/index.js
 import React from 'react'
 import Heading from '../components/Heading'
 
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <>
@@ -375,7 +377,7 @@ export default Index
 
 `Link`コンポーネントでルーティングさせてみましょう。
 
-```javascript
+```jsx
 // pages/index.js
 import React from 'react'
 import Link from 'next/link' // Linkコンポーネントを追加
@@ -383,7 +385,7 @@ import Heading from '../components/Heading'
 
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
-const Index = () => {
+function Index() {
   const text = 'Next.js!'
   return (
     <>
@@ -412,11 +414,13 @@ export default Index
 $ touch pages/batman.js
 ```
 
-```javascript
+```jsx
 // pages/batman.js
 import React from 'react'
 
-const Batman = () => <div>batman</div>
+function Batman() {
+  return <div>batman</div>
+}
 
 export default Batman
 ```
@@ -435,24 +439,26 @@ Node.jsではfetchメソッドが使えないので、`isomorphic-unfetch`をイ
 $ npm i isomorphic-unfetch
 ```
 
-```javascript
+```jsx
 // pages/batman.js
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
 
-const Batman = ({ shows }) => (
-  <div>
-    <h1>Batman TV Shows</h1>
-    <ul>
-      {shows.map(show => (
-        <li key={show.id}>
-          <div><img src={show.image.medium} /></div>
-          <div>{show.name}</div>
-        </li>
-      ))}
-    </ul>
-  </div>
-)
+function Batman({ shows }) {
+  return (
+    <div>
+      <h1>Batman TV Shows</h1>
+      <ul>
+        {shows.map(show => (
+          <li key={show.id}>
+            <div><img src={show.image.medium} /></div>
+            <div>{show.name}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 Batman.getInitialProps = async () => {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
