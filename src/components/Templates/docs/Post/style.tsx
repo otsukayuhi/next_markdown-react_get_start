@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
-import BreakPoints from 'const/BreakPoints'
+import BreakPoints from 'const/Breakpoints'
 
 export type NavStyleProps = {
   isNavShow: boolean

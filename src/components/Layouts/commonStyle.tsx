@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import BreakPoints from 'const/BreakPoints'
+import BreakPoints from 'const/Breakpoints'
 
 export const BaseContentStyle = styled.div`
   margin: 0 auto;
