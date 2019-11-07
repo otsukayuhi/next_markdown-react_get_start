@@ -5,7 +5,7 @@ Reactとは、Facebookが作ったユーザーインターフェイスを構築�
 
 公式サイト：https://ja.reactjs.org/
 
-## 宣言型と命令型
+## 宣言的UI
 
 Reactに限らず、近年のUIフレームワーク・ライブラリ、およびプログラミングにおいて主要なパラダイムである**宣言的UI**・**宣言型プログラミング**と、対義の**命令的UI**・**命令型プログラミング**について知っておく必要があります。
 
@@ -89,6 +89,62 @@ animals.forEach(animal => {
 
 ReactやVue.jsは、jQueryの次に流行っているフレームワーク・ライブラリではなく、**宣言的なUIを作るためのフレームワーク・ライブラリ**です。
 
+宣言的なUIが不要であれば、ReactやVue.jsは不要なのです。
+
 このスライドがとても参考になります。
 
 https://speakerdeck.com/sonatard/xuan-yan-de-ui
+
+## Reactの特徴
+
+Reactは公式サイトにもある通りJavaScriptライブラリなので、Vue.jsのように`.vue`ファイルのようなものはなく、すべて`.js`ファイルです。（[Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react#naming)では、JSXと純粋なJavaScriptを分けるために、`.jsx`拡張子を推奨しています）一見、HTMLのようなJSXも`React.createElement()`のシンタックスシュガーです。
+
+```jsx
+// どちらも同じことをしている
+const foo1 = <div>foo1</div>;
+const foo2 = React.createElement("div", null, "foo2");
+```
+
+Vue.jsがディレクティブを使いHTMLを拡張するような方法で開発するのに対し、ReactはガシガシJavaScriptを書いていきます。（まあ、Vue.jsもガッツリ開発を始めるとガシガシJavaScriptを書くことになると思いますが（・ω・）
+
+また、Reactは基本的に**データを受け取って適切なViewを返すこと**を目的としたシンプルなライブラリなので、Angularのようなルールはなく、自由度がかなり高いです。逆に言うと、しっかりとした設計ができてないと、開発途中でつらくなります（・ω・）
+
+### シンプルなReactのサンプル
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- babelがJSXをReact.createElement()に変換してくれる -->
+    <script type="text/babel">
+      /**
+       * 引数：propsを、JSX：<div>{props.text}</div>で受け取り、returnで返す。
+       * この一式をコンポーネントと呼ぶ。
+       */
+      function Hello(props) {
+        return <div>{props.text}</div>
+      };
+
+      /**
+       * Helloコンポーネントを<div id="root"></div>にマウントしている。
+       * 関数みたいにしてみると、`Hello({ text: 'Hello, React!' });` こんな感じ。
+       */
+      ReactDOM.render(
+        <Hello text="Hello, React!" />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
+```
+
