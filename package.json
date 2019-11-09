@@ -51,7 +51,7 @@
     "build": "next build",
     "start": "next start",
     "export": "NODE_ENV=production npm run build && next export",
-    "lint": "eslint --fix src/**/*.{ts,tsx}",
+    "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "test": "jest"
   },
   "author": "",
