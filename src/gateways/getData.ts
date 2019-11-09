@@ -20,7 +20,7 @@ export type DataType = {
 
 const getData = async ({
   pageName = undefined,
-  isPost = false
+  isPost = false,
 }: GetDataArg) => {
   const data = await import('../../data/data.json').catch(() => null);
 

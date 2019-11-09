@@ -18,9 +18,9 @@ const getPathsForMarkdown = () =>
       [`/docs/${trimmedName}`]: {
         page: '/docs/[id]',
         query: {
-          id: trimmedName
-        }
-      }
+          id: trimmedName,
+        },
+      },
     });
   }, {});
 
@@ -32,11 +32,11 @@ const exportPathMap = production
   ? async function(defaultPathMap) {
       const pages = {
         '/': { page: '/' },
-        ...getPathsForMarkdown()
+        ...getPathsForMarkdown(),
       };
       return {
         ...defaultPathMap,
-        ...pages
+        ...pages,
       };
     }
   : null;
@@ -45,7 +45,7 @@ module.exports = {
   webpack: config => {
     config.module.rules.push({
       test: [/\.md$/, /\.css$/],
-      use: 'raw-loader'
+      use: 'raw-loader',
     });
 
     /**
@@ -60,5 +60,5 @@ module.exports = {
 
     return config;
   },
-  exportPathMap
+  exportPathMap,
 };

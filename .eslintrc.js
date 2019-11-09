@@ -10,15 +10,15 @@ module.exports = {
   env: {
     'jest/globals': true
   },
-  plugins: ['react-hooks', 'jest', 'prettier'],
+  plugins: ['react-hooks', 'jest'],
   extends: [
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
+    'prettier/react',
   ],
   rules: {
-    'prettier/prettier': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.ts', 'tsx'] }],
@@ -26,7 +26,7 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    'react/prop-types': 0
+    'react/prop-types': 0,
   },
   settings: {
     react: {

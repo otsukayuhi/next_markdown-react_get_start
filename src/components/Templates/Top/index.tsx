@@ -10,7 +10,7 @@ import {
   HeadingInnerStyle,
   LeadStyle,
   ListStyle,
-  ItemStyle
+  ItemStyle,
 } from './style';
 
 export type TopProps = {

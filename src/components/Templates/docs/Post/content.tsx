@@ -5,7 +5,7 @@ import { DocsContext } from 'pages/docs/[id]';
 import {
   WrapperStyle,
   ContentStyle,
-  ContentStyleClassName
+  ContentStyleClassName,
 } from './contentStyle';
 
 // Markdownパーサー
@@ -14,7 +14,7 @@ marked.setOptions({
   highlight: (code, lang) => {
     // シンタックスハイライトを追加
     return hljs.highlightAuto(code, [lang]).value;
-  }
+  },
 });
 
 // MarkdownをHTMLに変換

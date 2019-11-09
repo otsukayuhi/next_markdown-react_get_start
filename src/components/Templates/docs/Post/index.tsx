@@ -11,7 +11,7 @@ import {
   WrapperStyle,
   ContentWrapperStyle,
   NavWrapperStyle,
-  MenuButtonWrapperStyle
+  MenuButtonWrapperStyle,
 } from './style';
 
 export type PostProps = {

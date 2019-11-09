@@ -9,8 +9,8 @@ const Page: NextPage<TopProps> = ({ data }) => {
   const topData: DataType = data || {
     pageData: {
       title: 'トップページ',
-      subtitle: null
-    }
+      subtitle: null,
+    },
   };
   return (
     <TopContext.Provider value={topData}>
