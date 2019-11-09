@@ -31,11 +31,18 @@
       ]
     }
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
+
+  "includes": [
+    "src",
+    "**/*.tsx",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.js",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out"
   ]
 }
