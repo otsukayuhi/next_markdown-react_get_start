@@ -1,8 +1,8 @@
-const fs = require('fs')
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-const markdownFolder = 'data/markdown'
+const fs = require('fs');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const markdownFolder = 'data/markdown';
 
-const production = process.env.NODE_ENV === 'production'
+const production = process.env.NODE_ENV === 'production';
 
 const getPathsForMarkdown = () =>
   /**
@@ -13,7 +13,7 @@ const getPathsForMarkdown = () =>
    * reduce() 難しい＼(^o^)／
    */
   fs.readdirSync(markdownFolder).reduce((acc, fileName) => {
-    const trimmedName = fileName.substring(0, fileName.length - 3)
+    const trimmedName = fileName.substring(0, fileName.length - 3);
     return Object.assign(acc, {
       [`/docs/${trimmedName}`]: {
         page: '/docs/[id]',
@@ -21,8 +21,8 @@ const getPathsForMarkdown = () =>
           id: trimmedName
         }
       }
-    })
-  }, {})
+    });
+  }, {});
 
 /**
  * npm run export 時のみ実行
@@ -33,32 +33,32 @@ const exportPathMap = production
       const pages = {
         '/': { page: '/' },
         ...getPathsForMarkdown()
-      }
+      };
       return {
         ...defaultPathMap,
         ...pages
-      }
+      };
     }
-  : null
+  : null;
 
 module.exports = {
   webpack: config => {
     config.module.rules.push({
       test: [/\.md$/, /\.css$/],
       use: 'raw-loader'
-    })
+    });
 
     /**
      * TypeScriptでパスを解決するやつ
      * https://github.com/zeit/next.js/issues/7935
      */
     if (config.resolve.plugins) {
-      config.resolve.plugins.push(new TsconfigPathsPlugin())
+      config.resolve.plugins.push(new TsconfigPathsPlugin());
     } else {
-      config.resolve.plugins = [new TsconfigPathsPlugin()]
+      config.resolve.plugins = [new TsconfigPathsPlugin()];
     }
 
-    return config
+    return config;
   },
   exportPathMap
-}
+};

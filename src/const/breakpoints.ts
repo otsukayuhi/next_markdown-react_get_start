@@ -6,4 +6,4 @@ enum BreakPoints {
   xl = 1200
 }
 
-export default BreakPoints
+export default BreakPoints;

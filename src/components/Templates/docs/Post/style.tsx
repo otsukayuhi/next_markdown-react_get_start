@@ -1,18 +1,18 @@
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
-import BreakPoints from 'const/Breakpoints'
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import BreakPoints from 'const/Breakpoints';
 
 export type NavStyleProps = {
-  isNavShow: boolean
-}
+  isNavShow: boolean;
+};
 
 const transition = css`
   transition: transform 0.3s ease-out;
-`
+`;
 
 export const WrapperStyle = styled.div`
   overflow: hidden;
-`
+`;
 
 export const MenuButtonWrapperStyle = styled.button`
   position: fixed;
@@ -25,7 +25,7 @@ export const MenuButtonWrapperStyle = styled.button`
   @media (min-width: ${BreakPoints.md}px) {
     display: none;
   }
-`
+`;
 
 export const ContentWrapperStyle = styled.div<NavStyleProps>`
   transform: translateX(${props => (props.isNavShow ? '240px' : '0')});
@@ -35,7 +35,7 @@ export const ContentWrapperStyle = styled.div<NavStyleProps>`
     margin-left: 240px;
     transform: translateX(0)
   }
-`
+`;
 
 export const NavWrapperStyle = styled.div<NavStyleProps>`
   position: fixed;
@@ -46,4 +46,4 @@ export const NavWrapperStyle = styled.div<NavStyleProps>`
   @media (min-width: ${BreakPoints.md}px) {
     transform: translateX(0)
   }
-`
+`;

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import Link from 'next/link'
-import BaseLayout from 'components/Layouts/BaseLayout'
-import { TopContext } from 'pages/index'
-import { DataType } from 'gateways/getData'
+import React, { useContext } from 'react';
+import Link from 'next/link';
+import BaseLayout from 'components/Layouts/BaseLayout';
+import { TopContext } from 'pages/index';
+import { DataType } from 'gateways/getData';
 import {
   WrapperStyle,
   HeadingWrapperStyle,
@@ -11,19 +11,19 @@ import {
   LeadStyle,
   ListStyle,
   ItemStyle
-} from './style'
+} from './style';
 
 export type TopProps = {
-  data: DataType | null
-}
+  data: DataType | null;
+};
 
 const Top: React.FC = () => {
-  const { pageData, post } = useContext(TopContext)
+  const { pageData, post } = useContext(TopContext);
 
   const items = !post
     ? null
     : post.map((item, index) => {
-        const { title, id } = item
+        const { title, id } = item;
 
         return (
           <ItemStyle key={id}>
@@ -31,8 +31,8 @@ const Top: React.FC = () => {
               <a>{`${index + 1}. ${title}`}</a>
             </Link>
           </ItemStyle>
-        )
-      })
+        );
+      });
 
   return (
     <BaseLayout>
@@ -51,7 +51,7 @@ const Top: React.FC = () => {
         {items && <ListStyle>{items}</ListStyle>}
       </WrapperStyle>
     </BaseLayout>
-  )
-}
+  );
+};
 
-export default Top
+export default Top;

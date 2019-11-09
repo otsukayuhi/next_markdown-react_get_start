@@ -1,6 +1,6 @@
-import React from 'react'
-import { Global, css } from '@emotion/core'
-import resetCss from 'ress/dist/ress.min.css'
+import React from 'react';
+import { Global, css } from '@emotion/core';
+import resetCss from 'ress/dist/ress.min.css';
 
 const globalStyle = css`
   ${resetCss}
@@ -18,13 +18,13 @@ const globalStyle = css`
     display: block;
     max-width: 100%;
   }
-`
+`;
 
 const BaseLayout: React.FC = ({ children }) => (
   <>
     <Global styles={globalStyle} />
     {children}
   </>
-)
+);
 
-export default BaseLayout
+export default BaseLayout;

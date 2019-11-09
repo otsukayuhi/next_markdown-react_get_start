@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import BreakPoints from 'const/Breakpoints'
+import styled from '@emotion/styled';
+import BreakPoints from 'const/Breakpoints';
 
 export const BaseContentStyle = styled.div`
   margin: 0 auto;
@@ -10,4 +10,4 @@ export const BaseContentStyle = styled.div`
   @media (min-width: ${BreakPoints.md}px) {
     padding: 50px 45px;
   }
-`
+`;
