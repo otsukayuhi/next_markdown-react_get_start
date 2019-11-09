@@ -8,9 +8,9 @@ module.exports = {
     }
   },
   env: {
-    "jest/globals": true
+    'jest/globals': true
   },
-  plugins: ['react-hooks', 'jest'],
+  plugins: ['react-hooks', 'jest', 'prettier'],
   extends: [
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
@@ -18,12 +18,14 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   rules: {
+    'prettier/prettier': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.ts', 'tsx'] }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 0
   },
   settings: {
