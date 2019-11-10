@@ -9,9 +9,7 @@ type NavProps = {
 };
 
 const Nav: React.FC<NavProps> = ({ data, currentId }) => {
-  if (!data || !data.post) return null;
-
-  const items = data.post.map((item, index) => {
+  const items = data?.post?.map((item, index) => {
     const { title, id } = item;
     const itemText = `${index + 1}. ${title}`;
 

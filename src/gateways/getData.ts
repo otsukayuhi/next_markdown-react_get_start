@@ -5,7 +5,7 @@ export type PostType = {
 
 export type PageDataType = {
   title: string;
-  subtitle: string | null;
+  subtitle?: string;
 };
 
 export type GetDataArg = {

@@ -25,20 +25,16 @@ const convertIntoHtml = markdown =>
 
 const PostContent: React.FC = () => {
   const { data, content, currentId } = useContext(DocsContext);
-  const myData =
-    data && data.post
-      ? data.post.filter(item => {
-          if (item.id === currentId) return item;
-        })
-      : null;
-  const title = myData ? myData[0].title : null;
-
+  const myData = data?.post?.filter(item => {
+    if (item.id === currentId) return item;
+  });
+  const pageTitle = myData?.[0].title;
   const html = convertIntoHtml(content);
   return (
     <>
       <Head>
-        <title>{title}</title>
-        {title && <meta name="description" content={title} />}
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageTitle} />
       </Head>
       <WrapperStyle>
         <ContentStyle

@@ -10,24 +10,19 @@ const Page: NextPage<TopProps> = ({ data }) => {
   const topData: DataType = data || {
     pageData: {
       title: 'トップページ',
-      subtitle: null,
     },
   };
 
   return (
     <TopContext.Provider value={topData}>
       <Head>
-        {topData && topData.pageData && (
-          <>
-            <title>
-              {`${topData.pageData.title} ${topData.pageData.subtitle}`}
-            </title>
-            <meta
-              name="description"
-              content={`${topData.pageData.title} ${topData.pageData.subtitle}`}
-            />
-          </>
-        )}
+        <title>
+          {`${topData.pageData?.title} ${topData.pageData?.subtitle}`}
+        </title>
+        <meta
+          name="description"
+          content={`${topData.pageData?.title} ${topData.pageData?.subtitle}`}
+        />
       </Head>
       <Top />
     </TopContext.Provider>
