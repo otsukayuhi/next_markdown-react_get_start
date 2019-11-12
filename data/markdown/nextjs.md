@@ -1,7 +1,9 @@
-# Next.jsとは？
+# Next.jsを体験しよう
+
+## Next.jsとは？
 
 **Next.js**とは、Reactでサーバーサイドレンダリングをするためのフレームワーク。  
-Vue.jsで言うところの、Nuxt.js。簡単にルーティングできて、静的サイトの書き出しもできる。
+Vue.jsで言うところの、Nuxt.js。簡単にルーティングできて、静的サイトの書き出しもできます。
 
 公式サイト：https://nextjs.org/
 
@@ -35,9 +37,9 @@ ReactDOM.render(
 
 たとえば、動的なコンテンツで`<title>`要素や`<meta>`要素をクライアントサイドで生成すると、TwitterやFacebook等のSNSでシェアしたときには反映されません。
 
-しかし、サーバーサイド上で事前にDOMを生成すれば、クライアントからみれば静的なHTMLがレスポンスとして返ってくるので、この問題か回避できます。
+しかし、サーバーサイド上で事前にDOMを生成すれば、クライアントからみれば静的なHTMLがレスポンスとして返ってくるので、この問題が回避できます。
 
-サーバーサイドのプログラミングでは、**PHP**や**Ruby**、**Java**等の言語の習得が必要ですが、Next.jsを使えば、JavaScriptで処理を書くことができます。
+サーバーサイドのプログラミングでは、**PHP**や**Ruby**、**Java**等の言語の習得が必要ですが、Next.jsを使えば、**JavaScript**で処理を書くことができます。
 
 ## Next.jsの使い方
 
@@ -391,7 +393,7 @@ function Index() {
   const text = 'Next.js!'
   
   /**
- * [変数, 変数の値を変える関数] = useState(初期値)
+ * const [変数, 変数の値を変える関数] = useState(初期値)
  * 以下では、`value`変数の初期値に`No, Click.`の文字列を代入しています。
  * setValue('Yes, Click!!')を実行すると、
  * valueの値を`No, Click.`から`Yes, Click!!`に変えることができます。
@@ -458,7 +460,7 @@ function Index() {
 export default Index
 ```
 
-`pages/batman.js`を作成した上、**バットマンページへ**のリンクをクリックすると、再読み込みなしで見込みページ遷移できます。
+`pages/batman.js`を作成した上、**バットマンページへ**のリンクをクリックすると、再読み込みなしでページ遷移できます。つまり、SPAです。
 
 ```console
 $ touch pages/batman.js
@@ -523,9 +525,9 @@ export default Batman
 
 ## サーバーサイドレンダリングの使い所
 
-> たとえば、動的なコンテンツで`<title>`要素や`<meta>`要素をクライアントサイドで生成すると、TwitterやFacebook等のSNSで> シェアしたときには反映されません。
+> たとえば、動的なコンテンツで`<title>`要素や`<meta>`要素をクライアントサイドで生成すると、TwitterやFacebook等のSNSでシェアしたときには反映されません。
 > 
-> しかし、サーバーサイド上で事前にDOMを生成すれば、クライアントからみれば静的なHTMLがレスポンスとして返ってくるので、この問> 題か回避できます。
+> しかし、サーバーサイド上で事前にDOMを生成すれば、クライアントからみれば静的なHTMLがレスポンスとして返ってくるので、この問題が回避できます。
 
 クソアプリを作ったので、これを実際に試してみましょう。
 
@@ -540,7 +542,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 function NameApp() {
-  const [value, setValue] = useState('');
+  const [name, setValue] = useState('');
 
   /**
    * Next.jsのルーターオブジェクト
@@ -549,10 +551,10 @@ function NameApp() {
   const router = useRouter();
 
   const onClickEvent = () => {
-    // yourname?value={value} に遷移する
+    // yourname?name=【name】に遷移する
     router.push({
       pathname: '/yourName',
-      query: { value },
+      query: { name },
     });
   };
 
@@ -561,7 +563,7 @@ function NameApp() {
   return (
     <>
       <div>君の名は。。。</div>
-      <input value={value} onChange={onChangeEvent} />
+      <input value={name} onChange={onChangeEvent} />
       <button onClick={onClickEvent}>click!!</button>
     </>
   );
@@ -570,13 +572,25 @@ function NameApp() {
 export default NameApp;
 ```
 
+`nameApp.js`のやっていることは、ReactやNext.jsを使わない方法で書くとこんな感じです。
+
+```html
+<form action="/yourName" method="GET">
+  <div>君の名は。。。</div>
+  <input name="name"/>
+  <button type="submit">click!!</button>
+</form>
+```
+
+続いて、遷移先の`yourName.js`を実装します。
+
 ```jsx
 // yourName
 import React from 'react';
 import Head from 'next/head';
 
 function YourName({ query }) {
-  const { value: name } = query;
+  const { name } = query;
   return (
     <>
       {/* Headコンポーネントで`title`や`meta`が設定できる */}
