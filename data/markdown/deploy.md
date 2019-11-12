@@ -35,23 +35,6 @@ $ now
 
 URLが自動で発行されます。おしまい。
 
-。。。ですが、`sub-domain.now.sh`みたいに`sub-domain`の部分を設定する方法を伝授します。
+サブドメインとかを変更したい場合は、さきほど登録したメールアドレスで管理画面にログインすると設定できます。
 
-`now.json`ファイルを作成し、以下の設定を記述します。
-
-```console
-$ touch now.json
-```
-
-```json
-{
-  "name": "project-name",
-  "version": 2
-}
-```
-
-`name`の部分がサブドメインになります。
-
-その他の細かな設定は以下を参照してください。
-
-https://zeit.co/docs/now-cli/
+https://zeit.co/login

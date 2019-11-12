@@ -373,20 +373,32 @@ function Index() {
 export default Index
 ```
 
-### Next.js独自の機能
+### useStateで関数コンポーネントに状態をもたせる
 
-`Link`コンポーネントでルーティングさせてみましょう。
+[hooks](https://ja.reactjs.org/docs/hooks-intro.html)は、React 16.8で追加された新機能です。Reactで`state`などの機能を使う場合、これまではクラスで書かないといけませんでしたが、hooksの登場で関数コンポーネントでも副作用のある機能を使うことができるようになりました。
+
+今回は、関数コンポーネントに状態をもたせることができる、`useState`を使ってみましょう。
 
 ```jsx
 // pages/index.js
-import React from 'react'
-import Link from 'next/link' // Linkコンポーネントを追加
+// `useState`をインポート
+import React, { useState } from 'react'
 import Heading from '../components/Heading'
 
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
 function Index() {
   const text = 'Next.js!'
+  
+  /**
+ * [変数, 変数の値を変える関数] = useState(初期値)
+ * 以下では、`value`変数の初期値に`No, Click.`の文字列を代入しています。
+ * setValue('Yes, Click!!')を実行すると、
+ * valueの値を`No, Click.`から`Yes, Click!!`に変えることができます。
+ */
+  const [value, setValue] = useState('No, Click.');
+  const onClickEvent = () => setValue('Yes, Click!!');
+
   return (
     <>
       <Heading>
@@ -398,6 +410,44 @@ function Index() {
         ))}
       </ul>
       <button onClick={() => console.log('onClick')}>ボタン</button>
+
+      {/* クリックすると、`No, Click.`が`Yes, Click!!`に変わる */}
+      <button onClick={onClickEvent}>{value}</button>
+    </>
+  )
+}
+
+export default Index
+```
+
+### Next.js独自の機能
+
+`Link`コンポーネントでルーティングさせてみましょう。
+
+```jsx
+// pages/index.js
+import React, { useState } from 'react'
+import Link from 'next/link' // Linkコンポーネントを追加
+import Heading from '../components/Heading'
+
+const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
+
+function Index() {
+  const text = 'Next.js!'
+  const [value, setValue] = useState('No, Click.');
+  const onClickEvent = () => setValue('Yes, Click!!');
+  return (
+    <>
+      <Heading>
+        <span>{`Hello, ${text}`}</span>
+      </Heading>
+      <ul>
+        {member.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+      <button onClick={() => console.log('onClick')}>ボタン</button>
+      <button onClick={onClickEvent}>{value}</button>
 
       {/* Linkコンポーネントでルーティングできる */}
       <Link href="/batman"><a>バットマンページへ</a></Link>
@@ -470,6 +520,87 @@ Batman.getInitialProps = async () => {
 
 export default Batman
 ```
+
+## サーバーサイドレンダリングの使い所
+
+> たとえば、動的なコンテンツで`<title>`要素や`<meta>`要素をクライアントサイドで生成すると、TwitterやFacebook等のSNSで> シェアしたときには反映されません。
+> 
+> しかし、サーバーサイド上で事前にDOMを生成すれば、クライアントからみれば静的なHTMLがレスポンスとして返ってくるので、この問> 題か回避できます。
+
+クソアプリを作ったので、これを実際に試してみましょう。
+
+```console
+$ touch nameApp.js
+$ touch yourName.js
+```
+
+```jsx
+// nameApp.js
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
+function NameApp() {
+  const [value, setValue] = useState('');
+
+  /**
+   * Next.jsのルーターオブジェクト
+   * https://nextjs.org/docs#userouter
+   */
+  const router = useRouter();
+
+  const onClickEvent = () => {
+    // yourname?value={value} に遷移する
+    router.push({
+      pathname: '/yourName',
+      query: { value },
+    });
+  };
+
+  const onChangeEvent = event => setValue(event.target.value);
+
+  return (
+    <>
+      <div>君の名は。。。</div>
+      <input value={value} onChange={onChangeEvent} />
+      <button onClick={onClickEvent}>click!!</button>
+    </>
+  );
+}
+
+export default NameApp;
+```
+
+```jsx
+// yourName
+import React from 'react';
+import Head from 'next/head';
+
+function YourName({ query }) {
+  const { value: name } = query;
+  return (
+    <>
+      {/* Headコンポーネントで`title`や`meta`が設定できる */}
+      <Head>
+        <title>{name} | Name Maker</title>
+        <meta name="description" content={`君の名は、${name}ですね。`} />
+      </Head>
+      <div>
+        君の名は、<strong>{name}</strong>ですね。
+      </div>
+    </>
+  );
+}
+
+YourName.getInitialProps = ({ query }) => {
+  return { query };
+};
+
+export default YourName;
+```
+
+フォームに名前を入力して隣のボタンをクリックすると、入力した名前を表示することができる画期的なアプリです。
+
+`command + option + u`でソースを確認してみましょう。サーバーから取得したHTMLの段階で、`title`や`meta`が設定されていることがわかります。
 
 より掘り下げたい場合は、[公式ドキュメント](https://nextjs.org/docs)を確認してください。
 
