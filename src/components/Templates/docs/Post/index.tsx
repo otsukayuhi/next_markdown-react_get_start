@@ -25,7 +25,7 @@ const Post: React.FC = () => {
   const [isNavShow, setIsNavShow] = useState(false);
   const onToggleNav = () => setIsNavShow(!isNavShow);
   const menuButton = isNavShow ? (
-    <CloseRounded fontSize="large" type="button" />
+    <CloseRounded fontSize="large" />
   ) : (
     <MenuRounded fontSize="large" />
   );
@@ -33,7 +33,11 @@ const Post: React.FC = () => {
   return (
     <BaseLayout>
       <WrapperStyle>
-        <MenuButtonWrapperStyle onClick={onToggleNav}>
+        <MenuButtonWrapperStyle
+          onClick={onToggleNav}
+          type="button"
+          aria-label="ナビゲーションボタン"
+        >
           {menuButton}
         </MenuButtonWrapperStyle>
         <NavWrapperStyle isNavShow={isNavShow}>
