@@ -538,27 +538,27 @@ $ touch yourName.js
 
 ```jsx
 // nameApp.js
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 function NameApp() {
-  const [name, setValue] = useState('');
+  const [name, setValue] = useState('')
 
   /**
    * Next.jsのルーターオブジェクト
    * https://nextjs.org/docs#userouter
    */
-  const router = useRouter();
+  const router = useRouter()
 
   const onClickEvent = () => {
     // yourname?name=【name】に遷移する
     router.push({
       pathname: '/yourName',
       query: { name },
-    });
-  };
+    })
+  }
 
-  const onChangeEvent = event => setValue(event.target.value);
+  const onChangeEvent = event => setValue(event.target.value)
 
   return (
     <>
@@ -566,16 +566,16 @@ function NameApp() {
       <input value={name} onChange={onChangeEvent} />
       <button onClick={onClickEvent}>click!!</button>
     </>
-  );
+  )
 }
 
-export default NameApp;
+export default NameApp
 ```
 
 `nameApp.js`のやっていることは、ReactやNext.jsを使わない方法で書くとこんな感じです。
 
 ```html
-<form action="/yourName" method="GET">
+<form action="yourName/" method="GET">
   <div>君の名は。。。</div>
   <input name="name"/>
   <button type="submit">click!!</button>
@@ -586,35 +586,72 @@ export default NameApp;
 
 ```jsx
 // yourName
-import React from 'react';
-import Head from 'next/head';
+import React from 'react'
+import Head from 'next/head'
 
 function YourName({ query }) {
-  const { name } = query;
+  const { name } = query
   return (
     <>
       {/* Headコンポーネントで`title`や`meta`が設定できる */}
       <Head>
-        <title>{name} | Name Maker</title>
+        <title>{name} | YourName</title>
         <meta name="description" content={`君の名は、${name}ですね。`} />
       </Head>
       <div>
         君の名は、<strong>{name}</strong>ですね。
       </div>
     </>
-  );
+  )
 }
 
 YourName.getInitialProps = ({ query }) => {
-  return { query };
-};
+  return { query }
+}
 
-export default YourName;
+export default YourName
 ```
 
 フォームに名前を入力して隣のボタンをクリックすると、入力した名前を表示することができる画期的なアプリです。
 
 `command + option + u`でソースを確認してみましょう。サーバーから取得したHTMLの段階で、`title`や`meta`が設定されていることがわかります。
+
+イメージを掴んでいただくために、試しに**PHP**で実装してみました。（PHPが全然わからないので細かいところはご勘弁を。。。(´；ω；｀)）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>YourName</title>
+</head>
+<body>
+  <form action="yourName/" method="GET">
+    <div>君の名は。。。</div>
+    <input name="name"/>
+    <button type="submit">click!!</button>
+  </form>
+</body>
+</html>
+```
+
+上のHTMLで`action.php?name=ほげぼげ`みたいな感じになるので、PHPでパラメーターを受け取りHTMLとしてクライアントにレスポンスします。
+
+```html
+<?php $name = htmlspecialchars($_GET['name']); ?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title><?php echo $name; ?> | YourName</title>
+  <meta name="description" content="君の名は、<?php echo $name; ?>ですね。" />
+</head>
+<body>
+  <div>君の名は、<?php echo $name; ?>ですね。</div>
+</body>
+</html>
+```
+
 
 より掘り下げたい場合は、[公式ドキュメント](https://nextjs.org/docs)を確認してください。
 
