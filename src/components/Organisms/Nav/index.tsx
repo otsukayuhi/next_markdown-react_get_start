@@ -15,7 +15,7 @@ const Nav: React.FC<NavProps> = ({ data, currentId }) => {
 
     return (
       <ItemStyle key={id}>
-        <Link href="/docs/[id]" as={`/docs/${id}`} prefetch>
+        <Link href="/docs/[id]" as={`/docs/${id}`}>
           <a>{currentId === id ? <strong>{itemText}</strong> : itemText}</a>
         </Link>
       </ItemStyle>

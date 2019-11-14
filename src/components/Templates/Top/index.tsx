@@ -22,7 +22,7 @@ const Top: React.FC = () => {
 
   const items = post?.map(({ title, id }, index) => (
     <ItemStyle key={id}>
-      <Link href="/docs/[id]" as={`/docs/${id}`} prefetch>
+      <Link href="/docs/[id]" as={`/docs/${id}`}>
         <a>{`${index + 1}. ${title}`}</a>
       </Link>
     </ItemStyle>

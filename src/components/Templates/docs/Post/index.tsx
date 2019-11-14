@@ -25,7 +25,7 @@ const Post: React.FC = () => {
   const [isNavShow, setIsNavShow] = useState(false);
   const onToggleNav = () => setIsNavShow(!isNavShow);
   const menuButton = isNavShow ? (
-    <CloseRounded fontSize="large" />
+    <CloseRounded fontSize="large" type="button" />
   ) : (
     <MenuRounded fontSize="large" />
   );
