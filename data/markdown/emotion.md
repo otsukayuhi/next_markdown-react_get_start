@@ -5,16 +5,17 @@
 必要なパッケージをインストールしましょ。
 
 - @emotion/styled
+- @emotion/core
 
 ```console
-$ npm i @emotion/styled
+$ npm i @emotion/styled @emotion/core
 ```
 
 ## Emotionを使ってみよう
 
 **@emotion/styled**を使い、styled-componentライクなコンポーネントを作ってみます。
 
-```javascript
+```jsx
 // components/Heading.js
 // @emotion/styledをインポート
 import styled from '@emotion/styled'
@@ -36,7 +37,7 @@ export default Heading
 
 CSS部分はテンプレートリテラルなので、`${}`内でJavaScriptが利用できます。
 
-```javascript
+```jsx
 // components/Heading.js
 import styled from '@emotion/styled'
 
@@ -58,7 +59,11 @@ export default Heading
 
 コンポーネント側からProps経由で値を渡すことができます。別ファイルにしてデータを渡してみましょう。
 
-```javascript
+```console
+$ touch components/HeadingStyle.js
+```
+
+```jsx
 // components/HeadingStyle.js
 import styled from '@emotion/styled'
 
@@ -70,7 +75,7 @@ export const HeadingStyle = styled.h1`
 `
 ```
 
-```javascript
+```jsx
 // components/Heading.js
 import { HeadingStyle } from './HeadingStyle'
 
@@ -103,6 +108,11 @@ export const HeadingStyle = styled.h1`
 ## CSS in JSのメリット
 
 たとえば、ブレークポイントをJavaScriptで管理すれば、Carouselのライブラリ等と共通の値を使うことができます。
+
+```console
+$ mkdir const
+$ touch const/breakPoints.js
+```
 
 ```js
 // const/breakPoints.js
@@ -141,7 +151,7 @@ $ npm i react-slick slick-carousel raw-loader
 $ touch next.config.js
 ```
 
-**raw-loader**でCSSファイルを扱えるようにします。
+`next.config.js`で、Next.jsが隠蔽しているwebpackの設定にアクセスできます。**raw-loader**を追加して、CSSファイルを扱えるようにします。
 
 ```js
 // next.config.js
@@ -149,13 +159,19 @@ module.exports = {
   webpack: config => {
     config.module.rules.push({
       test: /\.css$/,
-      use: 'raw-loader'
-    })
+      use: "raw-loader"
+    });
+    return config
   }
 }
+
 ```
 
 スライダーコンポーネントを作り、トップページで使ってみましょう。
+
+```console
+$ touch components/MySlider.js
+```
 
 ```jsx
 // components/MySlider.js
@@ -191,9 +207,9 @@ function MySlider({ member }) {
   return (
     <SliderWrapperStyle>
       <Slider {...settings}>
-       {member.map((animal, index) => {
+       {member.map((animal, index) => (
          <div key={index}>{animal}</div>
-       })}
+       ))}
       </Slider>
     </SliderWrapperStyle>
   )
@@ -204,25 +220,32 @@ export default MySlider
 
 ```jsx
 // pages/index.js
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import MySlider from "../components/MySlider";
 import Heading from '../components/Heading'
-import MySlider from '../components/MySlider' // MySliderをインポート
 
 const member = ['ネズミ', '牛', 'トラ', 'うさぎ']
 
 function Index() {
   const text = 'Next.js!'
+  const [value, setValue] = useState('No, Click.');
+  const onClickEvent = () => setValue('Yes, Click!!');
   return (
     <>
       <Heading>
         <span>{`Hello, ${text}`}</span>
       </Heading>
+      <button onClick={() => console.log("onClick")}>ボタン</button>
+      <button onClick={onClickEvent}>{value}</button>
+      <Link href="/batman">
+        <a>バットマンページへ</a>
+      </Link>
+
+      {/* member配列をPropsで渡す */}
       <MySlider member={member} />
-      <button onClick={() => console.log('onClick')}>ボタン</button>
-      <Link href="/batman"><a>バットマンページへ</a></Link>
     </>
-  )
+  );
 }
 
 export default Index

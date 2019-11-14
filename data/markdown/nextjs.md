@@ -2,8 +2,7 @@
 
 ## Next.jsとは？
 
-**Next.js**とは、Reactでサーバーサイドレンダリングをするためのフレームワーク。  
-Vue.jsで言うところの、Nuxt.js。簡単にルーティングできて、静的サイトの書き出しもできます。
+**Next.js**とは、Reactでサーバーサイドレンダリングをするためのフレームワークです。Vue.jsで言うところの、Nuxt.js。簡単にルーティングできて、静的サイトの書き出しもできます。
 
 公式サイト：https://nextjs.org/
 
@@ -183,7 +182,7 @@ export default Index
 import React from 'react'
 
 // 見出し用のコンポーネント
-function Heading(props) => {
+function Heading(props) {
   // 属性の値は、オブジェクトのプロパティとして渡される
   return <h1>{props.text}</h1>
 }
@@ -197,7 +196,7 @@ function Index() {
         * コンポーネントの属性でテキストを渡す
         * これをProps（プロップス）と呼ぶ
         */
-       }
+      }
       <Heading text={`Hello, ${text}`} />
     </div>
   )
@@ -284,6 +283,11 @@ export default Index
 ```
 
 ファイルを分けてみましょう。
+
+```console
+$ mkdir components 
+$ touch components/Heading.js
+```
 
 ```jsx
 // components/Heading.js
@@ -377,7 +381,7 @@ export default Index
 
 ### useStateで関数コンポーネントに状態をもたせる
 
-[hooks](https://ja.reactjs.org/docs/hooks-intro.html)は、React 16.8で追加された新機能です。Reactで`state`などの機能を使う場合、これまではクラスで書かないといけませんでしたが、hooksの登場で関数コンポーネントでも副作用のある機能を使うことができるようになりました。
+React 16.8で、[hooks](https://ja.reactjs.org/docs/hooks-intro.html)という新機能が追加されました。Reactで`state`などの機能を使う場合、これまではクラスで書かないといけませんでしたが、hooksの登場で関数コンポーネントでも副作用のある機能を使うことができるようになりました。
 
 今回は、関数コンポーネントに状態をもたせることができる、`useState`を使ってみましょう。
 
@@ -479,11 +483,35 @@ export default Batman
 
 ### `getInitialProps`で非同期データ取得
 
-バットマンAPIを叩いて、非同期に情報を取得してみましょう。ページ読み込み時になにかしらの処理をする場合は、`getInitialProps`メソッドを使います。
-
 `getInitialProps`は、Next.jsのライフサイクルメソッドです。ページが読み込まれたときはサーバーサイドで実行され、以降、`Link`コンポーネントによって別の`pages`コンポーネントへ移動した場合にクライアントサイドで実行されます。
 
+以下の実装をして、`http://localhost:3000`から`http://localhost:3000/batman`に遷移したときと、`http://localhost:3000/batman`をリロードしたときのコンソールの表示を確認してみましょう。
+
+```jsx
+// pages/batman.js
+import React from 'react'
+
+function Batman({ text }) {
+  return <div>{text}</div>
+}
+
+Batman.getInitialProps = async () => {
+  const text = 'I am Batman !!'
+  console.log(text)
+  return { text } // returnしたオブジェクトをコンポーネントのPropsとして受け取れます
+}
+
+export default Batman
+
+```
+
+遷移したときはブラウザ側のコンソール、リロードしたときは開発側のコンソールに、それぞれログが出たかと思います。
+
 Next.jsはサーバーサイドレンダリングのためのフレームワークなので、今書いているJavaScriptが**サーバーサイド（Node.js）なのか？**それとも、**クライアントサイドなのか？**を意識することが必要です。
+
+#### 非同期でデータ取得
+
+バットマンAPIを叩いて、非同期に情報を取得してみましょう。ページ読み込み時になにかしらの処理をする場合は、`getInitialProps`メソッドを使います。
 
 Node.jsではfetchメソッドが使えないので、`isomorphic-unfetch`をインストールして使います。
 
@@ -532,8 +560,8 @@ export default Batman
 クソアプリを作ったので、これを実際に試してみましょう。
 
 ```console
-$ touch nameApp.js
-$ touch yourName.js
+$ touch pages/nameApp.js
+$ touch pages/yourName.js
 ```
 
 ```jsx
@@ -651,7 +679,6 @@ export default YourName
 </body>
 </html>
 ```
-
 
 より掘り下げたい場合は、[公式ドキュメント](https://nextjs.org/docs)を確認してください。
 

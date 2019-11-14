@@ -1,7 +1,6 @@
 # Reactをはじめよう
 
-Reactとは、Facebookが作ったユーザーインターフェイスを構築するためのJavaScriptライブラリ。  
-宣言的なViewをコンポーネントベースで作ることができます。
+Reactとは、Facebookが作ったユーザーインターフェイスを構築するためのJavaScriptライブラリです。宣言的なViewをコンポーネントベースで作ることができます。
 
 公式サイト：https://ja.reactjs.org/
 
@@ -61,7 +60,7 @@ const animals = ["ねずみ", "うし", "とら"];
 
 // 配列の要素分処理を繰り返し、HTML側に挿入することでUIが決定する。
 animals.forEach(animal => {
-  $('#list').append(`<li>${animal}</li>`)
+  $('#list').append(`<li>${animal}</li>`);
 });
 ```
 
@@ -105,7 +104,7 @@ const foo1 = <div>foo1</div>;
 const foo2 = React.createElement("div", null, "foo2");
 ```
 
-Vue.jsがディレクティブを使いHTMLを拡張するような方法で開発するのに対し、ReactはガシガシJavaScriptを書いていきます。（まあ、Vue.jsもガッツリ開発を始めるとガシガシJavaScriptを書くことになると思いますが（・ω・）
+Vue.jsがディレクティブを使いHTMLを拡張するような方法で開発するのに対し、ReactはガシガシJavaScriptを書いていきます。まあ、Vue.jsもガッツリ開発を始めるとガシガシJavaScriptを書くことになると思いますが（・ω・）
 
 また、Reactは基本的に**データを受け取って適切なViewを返すこと**を目的としたシンプルなライブラリなので、Angularのようなルールはなく、自由度がかなり高いです。逆に言うと、しっかりとした設計ができてないと、開発途中でつらくなります（・ω・）
 
