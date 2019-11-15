@@ -663,9 +663,10 @@ export default YourName
 </html>
 ```
 
-上のHTMLで`action.php?name=ほげぼげ`みたいな感じになるので、PHPでパラメーターを受け取りHTMLとしてクライアントにレスポンスします。
+上のHTMLで`yourName/?name=ほげぼげ`みたいな感じになるので、PHPでパラメーターを受け取りHTMLとしてクライアントにレスポンスします。
 
 ```html
+<!-- yourName/index.php -->
 <?php $name = htmlspecialchars($_GET['name']); ?>
 <!DOCTYPE html>
 <html lang="ja">
