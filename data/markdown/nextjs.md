@@ -495,7 +495,7 @@ function Batman({ text }) {
   return <div>{text}</div>
 }
 
-Batman.getInitialProps = async () => {
+Batman.getInitialProps = () => {
   const text = 'I am Batman !!'
   console.log(text)
   return { text } // returnしたオブジェクトをコンポーネントのPropsとして受け取れます
