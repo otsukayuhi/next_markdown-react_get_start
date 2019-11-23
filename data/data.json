@@ -5,6 +5,10 @@
       "title": "Reactをはじめよう"
     },
     {
+      "id": "es2015",
+      "title": "ES2015+の基礎知識"
+    },
+    {
       "id": "nextjs",
       "title": "Next.jsを体験しよう"
     },
@@ -15,10 +19,6 @@
     {
       "id": "deploy",
       "title": "Nowでデプロイしよう"
-    },
-    {
-      "id": "es2015",
-      "title": "おまけ：ES2015+の基礎知識"
     }
   ],
   "top" : {
